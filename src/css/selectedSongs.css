@@ -1,0 +1,80 @@
+.selectedSongs {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.05);
+  margin: 20px 0;
+  height: 100%;
+  border-radius: 20px;
+  padding: 30px 20px;
+}
+.selectedSongs h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 30px;
+}
+.selectedSongs__list {
+  list-style-type: none;
+  padding: 0;
+}
+.selectedSongs__list .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+  transition: all 0.2s ease-in-out;
+}
+.selectedSongs__list .item .image-container {
+  height: 50px;
+  width: 50px;
+}
+.selectedSongs__list .item .image-container img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.selectedSongs__list .item p {
+  font-size: 14px;
+  margin: 0;
+}
+.selectedSongs__list .item .text {
+  flex: 1;
+  text-align: left;
+  margin-left: 15px;
+}
+.selectedSongs__list .item .artist {
+  color: rgba(255, 255, 255, 0.728);
+}
+.selectedSongs__list .item button {
+  margin-right: 20px;
+  padding: 8px 20px;
+}
+.selectedSongs__list .item button:hover {
+  transform: none;
+}
+.selectedSongs__list .item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.03);
+}
+.selectedSongs__list .item:hover button {
+  background-color: #d92424;
+}
+.selectedSongs .error {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 14px;
+}
+.selectedSongs .submit {
+  margin: 0px auto 0 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.selectedSongs .submit:disabled {
+  color: rgba(255, 255, 255, 0.447);
+}
+.selectedSongs .submit:hover:disabled {
+  transform: none;
+}/*# sourceMappingURL=selectedSongs.css.map */

@@ -1,0 +1,96 @@
+.selectedSongs {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 20px 0;
+    height: 100%;
+    border-radius: 20px;
+    padding: 30px 20px;
+
+    h2 {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 30px;
+    }
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+            transition: all 0.2s ease-in-out;
+
+            .image-container {
+                height: 50px;
+                width: 50px;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            p {
+                font-size: 14px;
+                margin: 0;
+            }
+
+
+            .text {
+                flex: 1;
+                text-align: left;
+                margin-left: 15px;
+            }
+
+            .artist {
+                color: rgba(255, 255, 255, 0.728);
+            }
+
+            button {
+                margin-right: 20px;
+                padding: 8px 20px;
+            }
+
+            button:hover {
+                transform: none;
+            }
+        }
+
+        .item:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
+
+            button {
+                background-color: #d92424;
+            }
+        }
+    }
+
+    .error {
+        margin-top: 0;
+        margin-bottom: 30px;
+        color: white;
+        font-size: 14px;
+    }
+
+    .submit {
+        margin: 0px auto 0 auto;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .submit:disabled {
+        color: rgba(255, 255, 255, 0.447);
+    }
+
+    .submit:hover:disabled {
+        transform: none;
+    }
+}

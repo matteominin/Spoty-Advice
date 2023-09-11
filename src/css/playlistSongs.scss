@@ -1,0 +1,82 @@
+.playlistSongs {
+    border-radius: 20px;
+    margin: 20px;
+    overflow: hidden;
+    position: relative;
+    max-width: 1100px;
+    background-color: rgba(32, 30, 30, 0.85);
+
+    .backgroundGradient {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        height: 450px;
+        width: 100%;
+    }
+
+    .backgroundGradient.pink {
+        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(148, 14, 88, 1) 60%, rgba(222, 68, 68, 1) 100%);
+    }
+
+    .backgroundGradient.green {
+        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(63, 148, 14, 1) 60%, rgba(24, 255, 0, 1) 100%);
+    }
+
+    .backgroundGradient.blue {
+        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(15, 136, 134, 1) 60%, rgba(0, 226, 255, 1) 100%);
+    }
+
+    &__description {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        height: 300px;
+
+        img {
+            width: 250px;
+            margin: 25px;
+            border-radius: 20px;
+        }
+
+        &__text {
+            width: 100%;
+            margin: auto 0 30px 10px;
+
+            p {
+                font-weight: 400;
+                font-size: 13px;
+                letter-spacing: 0.3px;
+                margin: 5px;
+                text-indent: -3px;
+            }
+
+            .name {
+                font-size: 50px;
+                margin: 0;
+            }
+
+            .owner {
+                font-weight: 300;
+
+                span {
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+
+    &__songs {
+        position: relative;
+        z-index: 1;
+        height: 40vh;
+        min-height: 500px;
+        margin: 20px auto 0 auto;
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 40px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-top: 3px solid rgba(255, 255, 255, 0.1);
+        width: 95%;
+    }
+}

@@ -1,0 +1,84 @@
+html,
+body {
+    font-family: 'Figtree', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* BUTTONS */
+button,
+a {
+    padding: 12px 30px;
+    margin: 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    margin: auto 10px;
+}
+
+button:hover,
+a:hover {
+    transform: scale(1.04);
+    transition: all 0.2s ease-in-out;
+}
+
+button.green,
+a.green {
+    background-color: #1ed75fdf;
+    border: none;
+}
+
+button.green:hover,
+a.green:hover {
+    background-color: #1ed75f;
+}
+
+button.transparent {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+}
+
+button.transparent:hover {
+    border: white 1px solid;
+}
+
+button.red {
+    background-color: #9f1f1f;
+    color: white;
+}
+
+button.red:hover {
+    background-color: #d92424;
+}
+
+/* LINKS */
+a {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 20px;
+}
+
+/* ERROR */
+.error {
+    color: #be2323;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 20px 40px;
+}
