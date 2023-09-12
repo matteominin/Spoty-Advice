@@ -76,3 +76,22 @@
         display: none;
     }
 }
+
+@media (max-width: 1400px) {
+    .searchItem {
+        margin-left: 0;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 780px) {
+    .searchItem {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 670px) {
+    .searchItem {
+        max-width: 400px;
+    }
+}

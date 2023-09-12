@@ -66,3 +66,15 @@
         text-decoration: underline;
     }
 }
+
+@media(max-width: 1200px) {
+    .searchBar {
+        padding-left: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .searchBar {
+        margin-bottom: 0;
+    }
+}

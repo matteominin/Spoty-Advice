@@ -91,7 +91,26 @@
 }
 .selectedSongs .submit:disabled {
   color: rgba(255, 255, 255, 0.447);
+  background-color: #0f6dcd;
 }
 .selectedSongs .submit:hover:disabled {
   transform: none;
+}
+
+.selectedSongs.mobile {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .selectedSongs.mobile {
+    display: flex;
+    position: relative;
+    margin-top: 0;
+    height: 100%;
+    top: 0;
+    margin-top: 40px;
+  }
+  .selectedSongs.desktop {
+    display: none;
+  }
 }/*# sourceMappingURL=selectedSongs.css.map */

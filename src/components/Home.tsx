@@ -11,7 +11,7 @@ const Home = () => {
     const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
 
     return (
-        <>
+        <div className="background">
             <NavBar />
             <div className="page-container">
                 <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
@@ -19,14 +19,15 @@ const Home = () => {
                         <h1 className="title">Get new Music</h1>
                         <h2 className="subtitle"><span>Search, Select and Discover the Music</span></h2>
                         <SearchBar />
+                        <SelectedSongs className="mobile" />
                         <Playlists />
                     </div>
                     <div className="right">
-                        <SelectedSongs />
+                        <SelectedSongs className="desktop" />
                     </div>
                 </SelectedSongsContext.Provider>
             </div>
-        </>
+        </div>
     )
 }
 

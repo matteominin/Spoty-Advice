@@ -39,18 +39,28 @@
 
     .text {
         flex: 1;
+        padding: 0 20px 0 10px;
     }
 
     .album {
         flex: 1;
     }
 
-    .artist {
-        margin-top: 5px;
+    .artist,
+    .name {
+        padding-top: 5px;
     }
 
-    .name {
-        margin-top: 2px;
+    .name,
+    .artist,
+    .album {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .artist,
@@ -61,6 +71,8 @@
     button {
         display: block;
         float: left;
+        font-weight: 500;
+        color: white;
     }
 
     button:hover {
@@ -71,4 +83,20 @@
 .song:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.03);
+}
+
+@media (max-width: 1200px) {
+    .song {
+        button {
+            padding: 8px 23px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .song {
+        .album {
+            display: none;
+        }
+    }
 }

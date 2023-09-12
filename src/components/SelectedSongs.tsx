@@ -2,7 +2,8 @@ import { useContext } from "react"
 import { SelectedSongsContext } from "../utils/context"
 import '../css/selectedSongs.css'
 
-const SelectedSongs = () => {
+
+const SelectedSongs = ({ className }: { className: string }) => {
     const { selectedSongs, setSelectedSongs } = useContext(SelectedSongsContext)
 
     const getArtistsList = (artists: any) => {
@@ -19,7 +20,7 @@ const SelectedSongs = () => {
     }
 
     return (
-        <div className="selectedSongs">
+        <div className={"selectedSongs " + className}>
             <h2>Selected Songs</h2>
             <ul className="selectedSongs__list">
                 {selectedSongs.map(song => (
@@ -49,7 +50,7 @@ const SelectedSongs = () => {
             {selectedSongs.length >= 5 && <p className="error">You can select only up to 5 songs</p>}
 
             <button
-                className="green submit"
+                className="submit blue"
                 disabled={selectedSongs.length <= 0}
             >
                 Get suggestions

@@ -11,8 +11,7 @@
   transition: all 0.3s ease-in-out;
 }
 .playlist img {
-  width: 70px;
-  height: 70px;
+  height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -43,15 +42,23 @@
 }
 
 .playlist.selected {
-  background-color: rgba(179, 179, 179, 0.6);
+  background-color: rgba(55, 121, 189, 0.74);
   transform: scale(1.08);
   margin: 6px 20px;
 }
 
 .playlist:hover {
-  background-color: rgb(179, 179, 179);
+  background-color: rgba(232, 218, 218, 0.66);
   cursor: pointer;
 }
 .playlist:hover .show_more {
   opacity: 1;
+}
+
+@media (max-width: 1200px) {
+  .playlist {
+    width: 250px;
+    height: 60px;
+    font-size: 15px;
+  }
 }/*# sourceMappingURL=playlist.css.map */

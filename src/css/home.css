@@ -2,10 +2,9 @@
   display: flex;
   padding: 70px 40px 0 40px;
   justify-content: center;
-  background-image: url("../assets/background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  min-height: 100vw;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 .page-container .title {
   font-size: 100px;
@@ -21,8 +20,48 @@
   color: color(srgb 0.71 0.0958 0.6655);
 }
 .page-container .left {
-  flex: 0.8;
+  flex: 0.7;
 }
 .page-container .right {
-  flex: 0.3;
+  flex: 0.25;
+}
+
+.background {
+  background-image: url("../assets/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+}
+
+@media (max-width: 1600px) {
+  .page-container .left {
+    flex: 0.7;
+  }
+  .page-container .right {
+    flex: 0.3;
+  }
+}
+@media (max-width: 1200px) {
+  .page-container {
+    padding: 70px 20px 0 20px;
+  }
+  .page-container .left {
+    flex: 0.6;
+  }
+  .page-container .right {
+    flex: 0.4;
+  }
+}
+@media (max-width: 1000px) {
+  .page-container {
+    padding: 70px 10px 0 10px;
+    flex-direction: column;
+  }
+  .page-container .left {
+    flex: 1;
+  }
+  .page-container .right {
+    flex: 1;
+  }
 }/*# sourceMappingURL=home.css.map */

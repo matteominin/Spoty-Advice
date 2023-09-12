@@ -24,7 +24,8 @@
   margin: 0 auto;
   border-top: 2px solid rgba(255, 255, 255, 0.2117647059);
   padding-top: 30px;
+  width: 100%;
 }
 .playlistsContainer .selectSongs .playlistSongs {
-  width: 80vw;
+  width: 100%;
 }/*# sourceMappingURL=playlists.css.map */

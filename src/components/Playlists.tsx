@@ -111,7 +111,7 @@ const Playlists = () => {
 
             <div className="playlistsContainer__buttons">
                 {userData && userData.next &&
-                    <button className="green" onClick={loadMore}>Load more</button>
+                    <button className="blue" onClick={loadMore}>Load more</button>
                 }
 
                 {userData && userData.next &&
