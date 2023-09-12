@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react"
 import Playlist from "./Playlist"
 import PlaylistSongs from "./PlaylistSongs"
-import { PlaylistItemInterface, SongItemInterface } from "../interfaces/playlist.interface"
+import { PlaylistItemInterface } from "../interfaces/playlist.interface"
 import '../css/playlists.css'
 import SelectedSongs from "./SelectedSongs"
-import { SelectedSongsContext } from "../utils/context"
 
 const Playlists = () => {
     const [userData, setUserData] = useState<any>(null)
-    const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
     const [selectedPlaylist, setSelectedPlaylist] = useState<PlaylistItemInterface>()
     const [error, setError] = useState<string | null>(null)
 
@@ -120,10 +118,8 @@ const Playlists = () => {
                 {error && <p className="error">{error}</p>}
             </div>
             {selectedPlaylist && <div className="selectSongs">
-                <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
-                    <PlaylistSongs {...selectedPlaylist} />
-                    <SelectedSongs />
-                </SelectedSongsContext.Provider>
+                <PlaylistSongs {...selectedPlaylist} />
+                <SelectedSongs />
             </div>}
         </div>
     )

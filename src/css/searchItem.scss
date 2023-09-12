@@ -9,6 +9,7 @@
     align-items: center;
     margin: 5px 10px;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 
     .image {
         height: 100%;
@@ -42,9 +43,36 @@
     .text {
         margin-left: 15px;
     }
+
+    .check,
+    .delete {
+        width: 22px;
+        margin-right: 18px;
+    }
+
+    .delete {
+        display: none;
+    }
 }
 
 .searchItem:hover {
     background-color: rgba(179, 179, 179, 0.8);
     transform: scale(1.02);
+}
+
+.searchItem.selected {
+    background-color: #1ed75f;
+}
+
+.searchItem.selected.canDelete:hover {
+    background-color: red;
+
+    .delete {
+        display: block;
+        width: 25px;
+    }
+
+    .check {
+        display: none;
+    }
 }

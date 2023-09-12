@@ -28,6 +28,10 @@ const SearchBar = () => {
             const data = await res.json()
             setResults(data)
         } catch (error: any) {
+            if (error.message === 'Unauthorized') {
+                localStorage.removeItem('access_token')
+                window.location.href = "/login"
+            }
             setError(error.message || "Unexpected error")
         }
     }
