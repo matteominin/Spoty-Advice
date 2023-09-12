@@ -4,19 +4,29 @@ import Playlists from "./Playlists"
 import SearchBar from "./SearchBar"
 import { SongItemInterface } from "../interfaces/playlist.interface"
 import { SelectedSongsContext } from "../utils/context"
+import SelectedSongs from "./SelectedSongs"
+import '../css/home.css'
 
 const Home = () => {
     const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
-    const accessToken: string = localStorage.getItem('access_token') || ''
 
     return (
-        <div className="Home">
+        <>
             <NavBar />
-            <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
-                <SearchBar />
-                {accessToken ? <Playlists /> : <h1>Home</h1>}
-            </SelectedSongsContext.Provider>
-        </div>
+            <div className="page-container">
+                <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
+                    <div className="left">
+                        <h1>Get new Music</h1>
+                        <h2>Search, Select and Discover the Music</h2>
+                        <SearchBar />
+                        <Playlists />
+                    </div>
+                    <div className="right">
+                        <SelectedSongs />
+                    </div>
+                </SelectedSongsContext.Provider>
+            </div>
+        </>
     )
 }
 

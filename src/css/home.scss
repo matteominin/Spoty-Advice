@@ -1,1 +1,17 @@
-.home {}
+.page-container {
+    display: flex;
+    padding: 150px 40px 0 40px;
+    justify-content: center;
+    background-image: url('../assets/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    .left {
+        flex: 0.8;
+    }
+
+    .right {
+        flex: 0.3;
+    }
+}

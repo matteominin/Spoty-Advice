@@ -58,8 +58,8 @@
 .playlistSongs__songs {
   position: relative;
   z-index: 1;
-  height: 40vh;
-  min-height: 500px;
+  height: 45vh;
+  min-height: 400px;
   margin: 20px auto 0 auto;
   list-style-type: none;
   padding: 0;

@@ -3,7 +3,6 @@ import Playlist from "./Playlist"
 import PlaylistSongs from "./PlaylistSongs"
 import { PlaylistItemInterface } from "../interfaces/playlist.interface"
 import '../css/playlists.css'
-import SelectedSongs from "./SelectedSongs"
 
 const Playlists = () => {
     const [userData, setUserData] = useState<any>(null)
@@ -13,7 +12,7 @@ const Playlists = () => {
     const accessToken = localStorage.getItem('access_token')
 
     useEffect(() => {
-        fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "3" }), {
+        fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "3" }), {   // TODO: remove limit
             headers: {
                 Authorization: 'Bearer ' + accessToken
             }
@@ -96,6 +95,9 @@ const Playlists = () => {
     const handleSelectPlaylist = (playlist: PlaylistItemInterface) => {
         if (selectedPlaylist && selectedPlaylist.id == playlist.id) return;
         setSelectedPlaylist(playlist)
+
+        const selectSongs = document.querySelector('.selectSongs')
+        selectSongs?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     return (
@@ -119,7 +121,6 @@ const Playlists = () => {
             </div>
             {selectedPlaylist && <div className="selectSongs">
                 <PlaylistSongs {...selectedPlaylist} />
-                <SelectedSongs />
             </div>}
         </div>
     )

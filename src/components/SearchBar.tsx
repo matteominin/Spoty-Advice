@@ -16,6 +16,7 @@ const SearchBar = () => {
 
     const search = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        setError('')
         try {
             const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
                 headers: {
@@ -28,6 +29,7 @@ const SearchBar = () => {
             const data = await res.json()
             setResults(data)
         } catch (error: any) {
+            setResults(undefined)
             if (error.message === 'Unauthorized') {
                 localStorage.removeItem('access_token')
                 window.location.href = "/login"
@@ -50,11 +52,13 @@ const SearchBar = () => {
                     <img src={searchIcon} alt="search icon" />
                 </label>
             </form>
+
             {error && <p className="error">{error}</p>}
 
-            <div className={results ? "results active" : "results"}>
+            {<div className={results ? "results active" : "results"}>
                 {results?.tracks?.items && results.tracks.items.map((track) => (<SearchItem key={track.id} track={track} />))}
-            </div>
+            </div>}
+            {results && <button className="close">Close</button>}
         </div>
     )
 }

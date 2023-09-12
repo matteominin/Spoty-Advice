@@ -1,18 +1,21 @@
 .searchBar {
-    width: 90%;
-    max-width: 650px;
     margin: 0 auto 50px auto;
     padding-left: 30px;
-    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .searchBox {
         display: flex;
+        width: 90%;
+        max-width: 650px;
         background-color: white;
         align-items: center;
         border-radius: 30px;
         overflow: hidden;
         position: relative;
         z-index: 1;
+        margin: 0 auto;
 
         input {
             width: 100%;
@@ -37,21 +40,29 @@
     }
 
     .results {
-        margin-top: 20px;
+        width: 90%;
+        margin: 25px auto 0 auto;
         overflow-y: scroll;
         height: 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         transition: all 0.5s ease-in-out;
-        border-bottom: 3px solid rgba(255, 255, 255, 0.1);
     }
 
     .results.active {
         height: 40vh;
+        border-bottom: 3px solid rgba(255, 255, 255, 0.1);
     }
 
-    button {
-        display: none;
+    .close {
+        border: none;
+        background-color: transparent;
+        border: none;
+        color: white;
+        margin: 0 auto;
+        font-weight: 400;
+        margin-top: 15px;
+        text-decoration: underline;
     }
 }
