@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
 
     img {
         width: 70px;
@@ -42,6 +43,11 @@
             border-left: 13px solid black;
         }
     }
+}
+
+.playlist.selected {
+    background-color: rgba(179, 179, 179, 0.6);
+    transform: scale(1.05);
 }
 
 .playlist:hover {

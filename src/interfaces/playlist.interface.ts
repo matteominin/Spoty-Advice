@@ -25,3 +25,17 @@ export interface SongItemInterface {
         explictit: boolean
     }
 }
+
+export interface SearchItemInterface {
+    id: string,
+    album: { name: string, images: Array<{ url: string }> },
+    name: string,
+    artists: Array<{ name: string }>,
+    explictit: boolean
+}
+
+export interface SearchInterface {
+    tracks: {
+        items: Array<SearchItemInterface>
+    }
+}

@@ -1,0 +1,50 @@
+.searchBar {
+  width: 90%;
+  max-width: 650px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  padding-left: 30px;
+}
+.searchBar .searchBox {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.searchBar .searchBox input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  font-size: 16px;
+  padding-left: 30px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.searchBar .searchBox input:focus {
+  outline: none;
+}
+.searchBar .searchBox label {
+  padding-right: 25px;
+  width: 24px;
+  height: 24px;
+  cursor: text;
+}
+.searchBar .results {
+  margin-top: 20px;
+  overflow-y: scroll;
+  height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+.searchBar .results.active {
+  height: 40vh;
+}
+.searchBar button {
+  display: none;
+}/*# sourceMappingURL=searchBar.css.map */

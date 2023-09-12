@@ -53,6 +53,7 @@
             .name {
                 font-size: 50px;
                 margin: 0;
+                text-align: left;
             }
 
             .owner {
@@ -78,5 +79,22 @@
         overflow-x: hidden;
         border-top: 3px solid rgba(255, 255, 255, 0.1);
         width: 95%;
+
+        .more {
+            width: 70%;
+            margin: 20px auto;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.728);
+            font-weight: 300;
+            font-size: 14px;
+            border-bottom: 1.2px solid rgba(255, 255, 255, 0.465);
+            line-height: 0.1em;
+        }
+
+        .more span {
+            background-color: rgba(32, 27, 27, 1);
+            margin-top: 30px;
+            padding: 0 10px;
+        }
     }
 }

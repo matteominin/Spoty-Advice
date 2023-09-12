@@ -3,4 +3,33 @@
   justify-content: space-between;
   background-color: black;
   margin-bottom: 50px;
+  height: 100px;
+  padding: 0 30px;
+}
+.navBar .left {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.2s ease-in-out;
+}
+.navBar .left .logo {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+.navBar .left .logo img {
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.navBar .left .logo:hover {
+  transform: none;
+}
+.navBar .left h1 {
+  margin: auto 20px;
+  font-size: 33px;
+  color: #1ed75f;
+}
+.navBar .left:hover {
+  transform: scale(1.02);
 }/*# sourceMappingURL=navBar.css.map */

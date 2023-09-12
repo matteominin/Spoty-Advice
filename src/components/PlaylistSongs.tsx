@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../css/playlistSongs.css'
-import { SongInterface, SongItemInterface } from '../interfaces/playlist.interface'
+import { SongInterface } from '../interfaces/playlist.interface'
 import Song from './Song'
 
 interface PropsInterface {
@@ -19,6 +19,7 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
     const gradientColorArray = ["pink", "green", "blue"]
 
     useEffect(() => {
+        if (!id) return
         fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=20`, {
             headers: {
                 Authorization: "Bearer " + accessToken
@@ -43,6 +44,26 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
         setGradientColor(gradientColorArray[Math.floor(Math.random() * gradientColorArray.length)])
     }, [id])
 
+    const loadMore = async () => {
+        if (!songs?.next) return;
+
+        try {
+            const res = await fetch(songs.next, {
+                headers: {
+                    Authorization: "Bearer " + accessToken
+                }
+            })
+            if (!res.ok) {
+                throw new Error("Error, can't load more")
+            }
+            const data = await res.json()
+            setSongs({ ...data, items: [...songs.items, ...data.items] })
+        } catch (error: any) {
+            setError(error.message || "Unexpected error")
+        }
+
+    }
+
     return (
         <div className='playlistSongs'>
             <div className={`backgroundGradient ${gradientColor}`}></div>
@@ -61,6 +82,15 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
                     key={track.id}
                 />
                 )}
+                {songs?.next ?
+                    <li
+                        className='more transparent'
+                        onClick={loadMore}
+                    >
+                        <span>Load More</span>
+                    </li> :
+                    <li className='more'><span>End of playlist</span></li>
+                }
             </ul>
             {error && <p className='error'>{error}</p>}
         </div>

@@ -29,6 +29,14 @@ const Song = ({ track, index }: PropsInterface) => {
         setSelectedSongs([...selectedSongs, track])
     }
 
+    const removeSong = (id: string) => {
+        setSelectedSongs(selectedSongs.filter(song => song.track.id !== id))
+    }
+
+    const isSelected = (id: string) => {
+        return selectedSongs.find(song => song.track.id === id)
+    }
+
     return (
         <li className="song">
             <p className="index">{index + 1}</p>
@@ -42,12 +50,10 @@ const Song = ({ track, index }: PropsInterface) => {
             </div>
 
             <p className='album'>{track.album.name}</p>
-            <button
-                className='green'
-                onClick={() => selectSong({ track })}
-            >
-                Add
-            </button>
+            {isSelected(track.id) ?
+                <button className='remove red' onClick={() => removeSong(track.id)}>Remove</button> :
+                <button className='green' onClick={() => selectSong({ track })}>Add</button>
+            }
         </li>
     )
 }

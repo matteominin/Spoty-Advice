@@ -16,10 +16,13 @@
 .playlistsContainer__buttons {
   padding-top: 10px;
   margin: 30px auto 0 auto;
+  margin-bottom: 50px;
 }
 .playlistsContainer .selectSongs {
   display: flex;
   margin: 0 auto;
+  border-top: 2px solid rgba(255, 255, 255, 0.2117647059);
+  padding-top: 30px;
 }
 .playlistsContainer .selectSongs .playlistSongs {
   width: 80vw;

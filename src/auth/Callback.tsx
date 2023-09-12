@@ -18,12 +18,12 @@ const Callback = () => {
     })
 
     useEffect(() => {
-        fetch('https://accounts.spotify.com/api/token?', {
+        fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body.toString()
+            body: body
         })
             .then(response => {
                 if (!response.ok) {
@@ -33,6 +33,7 @@ const Callback = () => {
             })
             .then(data => {
                 localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('refresh_token', data.refresh_token);
                 window.location.href = '/'
             })
             .catch(error => {

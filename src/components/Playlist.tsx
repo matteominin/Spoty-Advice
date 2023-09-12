@@ -3,12 +3,13 @@ import '../css/playlist.css'
 
 interface PlaylistProps {
     playlist: PlaylistItemInterface,
+    selected: boolean,
     selectPlaylist: (playlist: PlaylistItemInterface) => void
 }
 
-const Playlist = ({ playlist, selectPlaylist }: PlaylistProps) => {
+const Playlist = ({ playlist, selected, selectPlaylist }: PlaylistProps) => {
     return (
-        <div className="playlist" onClick={() => selectPlaylist(playlist)}>
+        <div className={selected ? "playlist selected" : "playlist"} onClick={() => selectPlaylist(playlist)}>
             <img src={playlist.images[1].url} alt={playlist.name} />
             <p className='name'>{playlist.name}</p>
             <div className="show_more">

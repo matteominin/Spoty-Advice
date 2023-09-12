@@ -18,11 +18,14 @@
     &__buttons {
         padding-top: 10px;
         margin: 30px auto 0 auto;
+        margin-bottom: 50px;
     }
 
     .selectSongs {
         display: flex;
         margin: 0 auto;
+        border-top: 2px solid #ffffff36;
+        padding-top: 30px;
 
         .playlistSongs {
             width: 80vw;

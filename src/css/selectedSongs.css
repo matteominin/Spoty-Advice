@@ -5,6 +5,9 @@
   height: 100%;
   border-radius: 20px;
   padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .selectedSongs h2 {
   text-align: center;
@@ -67,10 +70,7 @@
   font-size: 14px;
 }
 .selectedSongs .submit {
-  margin: 0px auto 0 auto;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto;
 }
 .selectedSongs .submit:disabled {
   color: rgba(255, 255, 255, 0.447);

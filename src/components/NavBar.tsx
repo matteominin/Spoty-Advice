@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import '../css/NavBar.css'
 
@@ -6,9 +7,13 @@ const NavBar = () => {
 
     return (
         <nav className='navBar'>
-            <div className="logo">
-                <Link to="/">LOGO</Link>
+            <div className="left">
+                <Link to='/' className="logo">
+                    <img src={logo} alt="Spoty Advice Logo" />
+                </Link>
+                <h1>Music Advice</h1>
             </div>
+
             {!accessToken && <Link className="green" to="/login">LogIn</Link>}
             {accessToken &&
                 <button

@@ -5,6 +5,9 @@
     height: 100%;
     border-radius: 20px;
     padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
     h2 {
         text-align: center;
@@ -80,10 +83,7 @@
     }
 
     .submit {
-        margin: 0px auto 0 auto;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0 auto;
     }
 
     .submit:disabled {

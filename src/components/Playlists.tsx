@@ -43,17 +43,26 @@ const Playlists = () => {
         let allItems = [...userData.items]
 
         while (next) {
-            const res = await fetch(next, {
-                headers: {
-                    Authorization: 'Bearer ' + accessToken
+            try {
+                const res = await fetch(next, {
+                    headers: {
+                        Authorization: 'Bearer ' + accessToken
+                    }
+                })
+
+                if (res.status === 401) throw new Error('Unauthorized')
+                if (!res.ok) throw new Error('Error, can\'t load more')
+
+                const data = await res.json()
+                next = data.next
+                allItems = [...allItems, ...data.items]
+            } catch (error: any) {
+                if (error.message === 'Unauthorized') {
+                    window.location.href = '/login'
+                    return;
                 }
-            })
-            if (!res.ok) {
-                throw new Error('Error, can\'t load more')
+                setError(error.message || 'Unexpected error')
             }
-            const data = await res.json()
-            next = data.next
-            allItems = [...allItems, ...data.items]
         }
         setUserData({ ...userData, items: allItems, next: null })
     }
@@ -96,7 +105,7 @@ const Playlists = () => {
             <h2>Your Playlists</h2>
             <div className="playlistsContainer__items">
                 {userData && userData.items.map((item: any) => (
-                    <Playlist playlist={item} selectPlaylist={handleSelectPlaylist} key={item.id} />
+                    <Playlist selected={selectedPlaylist?.id === item.id} playlist={item} selectPlaylist={handleSelectPlaylist} key={item.id} />
                 ))}
             </div>
 
