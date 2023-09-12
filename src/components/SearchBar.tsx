@@ -58,7 +58,13 @@ const SearchBar = () => {
             {<div className={results ? "results active" : "results"}>
                 {results?.tracks?.items && results.tracks.items.map((track) => (<SearchItem key={track.id} track={track} />))}
             </div>}
-            {results && <button className="close">Close</button>}
+            {results &&
+                <button
+                    className="close"
+                    onClick={() => setResults(undefined)}
+                >
+                    Close
+                </button>}
         </div>
     )
 }

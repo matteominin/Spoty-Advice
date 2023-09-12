@@ -4,7 +4,7 @@
     overflow: hidden;
     position: relative;
     max-width: 1100px;
-    background-color: rgba(32, 30, 30, 0.85);
+    background-color: rgba(38, 38, 38, 1);
 
     .backgroundGradient {
         position: absolute;
@@ -15,15 +15,15 @@
     }
 
     .backgroundGradient.pink {
-        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(148, 14, 88, 1) 60%, rgba(222, 68, 68, 1) 100%);
+        background: linear-gradient(0deg, rgba(38, 38, 38, 1) 10%, rgba(148, 14, 88, 1) 60%, rgba(222, 68, 68, 1) 100%);
     }
 
     .backgroundGradient.green {
-        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(63, 148, 14, 1) 60%, rgba(24, 255, 0, 1) 100%);
+        background: linear-gradient(0deg, rgba(38, 38, 38, 1) 10%, rgba(63, 148, 14, 1) 60%, rgba(24, 255, 0, 1) 100%);
     }
 
     .backgroundGradient.blue {
-        background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgba(15, 136, 134, 1) 60%, rgba(0, 226, 255, 1) 100%);
+        background: linear-gradient(0deg, rgba(38, 38, 38, 1) 10%, rgba(15, 136, 134, 1) 60%, rgba(0, 226, 255, 1) 100%);
     }
 
     &__description {

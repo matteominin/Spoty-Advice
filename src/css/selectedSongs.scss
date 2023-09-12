@@ -1,7 +1,7 @@
 .selectedSongs {
     position: sticky;
     top: 150px;
-    rgba(38, 38, 38, 1) margin: 20px;
+    margin: 20px;
     height: 585px;
     border-radius: 20px;
     padding: 30px 20px;
@@ -10,8 +10,9 @@
 
     h2 {
         text-align: center;
-        margin: 20px 0;
+        margin: 0;
         font-size: 30px;
+        color: white;
     }
 
     &__list {
@@ -26,7 +27,7 @@
             overflow: hidden;
             margin: 15px 0;
             transition: all 0.2s ease-in-out;
-            background-color: rgba(255, 255, 255, 0.089);
+            background-color: rgba(255, 255, 255, 0.26);
 
             .image-container {
                 height: 60px;
@@ -76,12 +77,19 @@
         }
 
         .item:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.5);
             transform: scale(1.03);
 
             button {
                 background-color: #d92424;
             }
+        }
+
+        .no-selected {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.728);
+            padding: 20px 0;
         }
     }
 

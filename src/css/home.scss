@@ -1,11 +1,29 @@
 .page-container {
     display: flex;
-    padding: 150px 40px 0 40px;
+    padding: 70px 40px 0 40px;
     justify-content: center;
     background-image: url('../assets/background.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+
+    .title {
+        font-size: 100px;
+        margin-bottom: 0;
+        color: color(srgb 0.0604 0.4268 0.805);
+    }
+
+    .subtitle {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+
+    .title,
+    .subtitle {
+        span {
+            color: color(srgb 0.71 0.0958 0.6655);
+        }
+    }
 
     .left {
         flex: 0.8;

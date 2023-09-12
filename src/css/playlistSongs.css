@@ -4,7 +4,7 @@
   overflow: hidden;
   position: relative;
   max-width: 1100px;
-  background-color: rgba(32, 30, 30, 0.85);
+  background-color: rgb(38, 38, 38);
 }
 .playlistSongs .backgroundGradient {
   position: absolute;
@@ -14,13 +14,13 @@
   width: 100%;
 }
 .playlistSongs .backgroundGradient.pink {
-  background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgb(148, 14, 88) 60%, rgb(222, 68, 68) 100%);
+  background: linear-gradient(0deg, rgb(38, 38, 38) 10%, rgb(148, 14, 88) 60%, rgb(222, 68, 68) 100%);
 }
 .playlistSongs .backgroundGradient.green {
-  background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgb(63, 148, 14) 60%, rgb(24, 255, 0) 100%);
+  background: linear-gradient(0deg, rgb(38, 38, 38) 10%, rgb(63, 148, 14) 60%, rgb(24, 255, 0) 100%);
 }
 .playlistSongs .backgroundGradient.blue {
-  background: linear-gradient(0deg, rgba(32, 30, 30, 0.85) 10%, rgb(15, 136, 134) 60%, rgb(0, 226, 255) 100%);
+  background: linear-gradient(0deg, rgb(38, 38, 38) 10%, rgb(15, 136, 134) 60%, rgb(0, 226, 255) 100%);
 }
 .playlistSongs__description {
   position: relative;

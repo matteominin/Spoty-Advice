@@ -1,6 +1,8 @@
 .playlistsContainer {
     display: flex;
     flex-direction: column;
+    //background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
 
     h2 {
         text-align: center;
@@ -29,10 +31,6 @@
 
         .playlistSongs {
             width: 80vw;
-        }
-
-        .selectedSongs {
-            width: 20vw;
         }
     }
 }

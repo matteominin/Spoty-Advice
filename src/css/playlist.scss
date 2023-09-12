@@ -1,9 +1,9 @@
 .playlist {
-    background-color: rgba(179, 179, 179, 0.2);
+    background-color: rgba(179, 179, 179, 0.454);
     height: 70px;
     width: 330px;
     border-radius: 5px;
-    margin: 6px 12px 6px 0;
+    margin: 6px 12px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -47,11 +47,12 @@
 
 .playlist.selected {
     background-color: rgba(179, 179, 179, 0.6);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    margin: 6px 20px;
 }
 
 .playlist:hover {
-    background-color: rgba(179, 179, 179, 0.8);
+    background-color: rgb(179, 179, 179);
     cursor: pointer;
 
     .show_more {

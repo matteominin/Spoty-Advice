@@ -42,6 +42,9 @@ const SelectedSongs = () => {
                         </button>
                     </li>
                 ))}
+                {selectedSongs.length <= 0 &&
+                    <li className="no-selected">You didn't select any song<br />The songs you select will appare here</li>
+                }
             </ul>
             {selectedSongs.length >= 5 && <p className="error">You can select only up to 5 songs</p>}
 

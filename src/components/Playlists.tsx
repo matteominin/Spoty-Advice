@@ -119,6 +119,7 @@ const Playlists = () => {
                 }
                 {error && <p className="error">{error}</p>}
             </div>
+
             {selectedPlaylist && <div className="selectSongs">
                 <PlaylistSongs {...selectedPlaylist} />
             </div>}

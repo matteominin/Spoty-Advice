@@ -16,8 +16,8 @@ const Home = () => {
             <div className="page-container">
                 <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
                     <div className="left">
-                        <h1>Get new Music</h1>
-                        <h2>Search, Select and Discover the Music</h2>
+                        <h1 className="title">Get new Music</h1>
+                        <h2 className="subtitle"><span>Search, Select and Discover the Music</span></h2>
                         <SearchBar />
                         <Playlists />
                     </div>
