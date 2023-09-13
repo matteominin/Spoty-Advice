@@ -68,6 +68,9 @@
 .song button:hover {
   transform: none;
 }
+.song .add {
+  display: none;
+}
 
 .song:hover {
   background-color: rgba(255, 255, 255, 0.2);
@@ -82,5 +85,21 @@
 @media (max-width: 600px) {
   .song .album {
     display: none;
+  }
+}
+@media (max-width: 450px) {
+  .song p {
+    font-size: 13px;
+  }
+  .song .text {
+    padding-right: 5px;
+  }
+  .song .index {
+    margin-left: 13px;
+  }
+  .song button {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 400;
   }
 }/*# sourceMappingURL=song.css.map */

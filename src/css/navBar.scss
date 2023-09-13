@@ -49,3 +49,40 @@
         transform: scale(1.02);
     }
 }
+
+@media (max-width: 1000px) {
+    .navBar {
+        height: 100px;
+
+        button {
+            border: none !important;
+            background-color: #b518aa !important;
+        }
+
+        button:hover {
+            background-color: #443643 !important;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .navBar {
+        position: relative;
+        padding: 0 10px;
+        margin-bottom: 0;
+
+        button {
+            margin-right: 25px;
+            padding: 10px 30px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .navBar {
+        button {
+            margin-right: 25px;
+            padding: 8px 25px;
+        }
+    }
+}

@@ -93,7 +93,10 @@ const Playlists = () => {
     }
 
     const handleSelectPlaylist = (playlist: PlaylistItemInterface) => {
-        if (selectedPlaylist && selectedPlaylist.id == playlist.id) return;
+        if (selectedPlaylist?.id == playlist.id) {
+            setSelectedPlaylist(undefined)
+            return;
+        }
         setSelectedPlaylist(playlist)
 
         const selectSongs = document.querySelector('.selectSongs')

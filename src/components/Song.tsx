@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { SongItemInterface } from '../interfaces/playlist.interface'
 import { SelectedSongsContext } from '../utils/context'
+import addIcon from '../assets/add.png'
 import '../css/song.css'
 
 interface PropsInterface {
@@ -54,6 +55,13 @@ const Song = ({ track, index }: PropsInterface) => {
                 <button className='remove red' onClick={() => removeSong(track.id)}>Remove</button> :
                 <button className='green' onClick={() => selectSong({ track })}>Add</button>
             }
+
+            <img
+                className="add"
+                src={addIcon}
+                alt="add icon"
+                onClick={() => selectSong({ track })}
+            />
         </li>
     )
 }

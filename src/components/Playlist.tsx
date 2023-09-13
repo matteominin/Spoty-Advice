@@ -1,4 +1,5 @@
 import { PlaylistItemInterface } from '../interfaces/playlist.interface'
+import arrowIcon from '../assets/arrow.png'
 import '../css/playlist.css'
 
 interface PlaylistProps {
@@ -12,9 +13,7 @@ const Playlist = ({ playlist, selected, selectPlaylist }: PlaylistProps) => {
         <div className={selected ? "playlist selected" : "playlist"} onClick={() => selectPlaylist(playlist)}>
             <img src={playlist.images[1].url} alt={playlist.name} />
             <p className='name'>{playlist.name}</p>
-            <div className="show_more">
-                <div className="arrow-right"></div>
-            </div>
+            <img className='arrow' src={arrowIcon} alt="arrow icon" />
         </div>
     )
 }

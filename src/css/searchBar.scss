@@ -1,6 +1,5 @@
 .searchBar {
     margin: 80px auto 50px auto;
-    padding-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -76,5 +75,27 @@
 @media(max-width: 1200px) {
     .searchBar {
         margin-bottom: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .searchBar {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 450px) {
+    .searchBar {
+        .searchBox {
+            width: 98%;
+
+            input {
+                font-size: 14px;
+            }
+        }
+
+        .results {
+            width: 98%;
+        }
     }
 }
