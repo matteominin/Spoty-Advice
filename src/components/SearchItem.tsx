@@ -50,7 +50,7 @@ const SearchItem = ({ track }: SongItemInterface) => {
         <div
             className={searchItemClassName()}
             onClick={() => selected ? removeSong(track.id) : selectSong({ track })}
-            onMouseLeave={() => { if (selected) setDeleteEffect(true); console.log(deleteEffect) }}
+            onMouseLeave={() => { if (selected) setDeleteEffect(true); }}
             style={{ backgroundColor: randomColor() }}
         >
             <img className="image" src={track.album.images[2].url} alt={track.album.name} />

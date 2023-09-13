@@ -28,7 +28,7 @@
 }
 
 .background {
-  background-image: url("../assets/background.png");
+  background-image: url("../assets/background_large.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -79,6 +79,18 @@
   .page-container .right {
     flex: 1;
   }
+  .background {
+    background-image: url("../assets/background_medium.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: unset;
+  }
+}
+@media (max-width: 800px) {
+  .background {
+    background-size: auto 100%;
+  }
 }
 @media (max-width: 700px) {
   .page-container .title {
@@ -87,8 +99,6 @@
   .page-container .subtitle {
     font-size: 35px;
   }
-}
-@media (max-width: 700px) {
   .page-container .title,
   .page-container .subtitle {
     margin: 0 auto;
@@ -100,6 +110,10 @@
   }
 }
 @media (max-width: 600px) {
+  .background {
+    background-image: url("../assets/background_small.png");
+    background-position: bottom;
+  }
   .page-container {
     padding-top: 0;
   }

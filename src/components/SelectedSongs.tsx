@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { SelectedSongsContext } from "../utils/context"
 import '../css/selectedSongs.css'
+import { Link } from "react-router-dom"
 
 
 const SelectedSongs = ({ className }: { className: string }) => {
@@ -49,12 +50,13 @@ const SelectedSongs = ({ className }: { className: string }) => {
             </ul>
             {selectedSongs.length >= 5 && <p className="error">You can select only up to 5 songs</p>}
 
-            <button
-                className="submit blue"
-                disabled={selectedSongs.length <= 0}
+            <Link
+                to={`/recommendation?trackList=${selectedSongs.map(song => song.track.id).join(',')}`}
+                className={"submit blue" + (selectedSongs.length > 0 ? "" : " disabled")}
+                style={selectedSongs.length > 0 ? { pointerEvents: "all" } : { pointerEvents: "none" }}
             >
                 Get suggestions
-            </button>
+            </Link>
         </div >
     )
 }

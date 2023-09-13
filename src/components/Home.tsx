@@ -6,7 +6,6 @@ import { SongItemInterface } from "../interfaces/playlist.interface"
 import { SelectedSongsContext } from "../utils/context"
 import SelectedSongs from "./SelectedSongs"
 import '../css/home.css'
-import Recommendation from "./Recommendation"
 
 const Home = () => {
     const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
@@ -26,7 +25,6 @@ const Home = () => {
                     <div className="right">
                         <SelectedSongs className="desktop" />
                     </div>
-                    <Recommendation />
                 </SelectedSongsContext.Provider>
             </div>
         </div>

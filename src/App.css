@@ -65,13 +65,15 @@ button.red:hover {
     background-color: #d92424;
 }
 
-button.blue {
+button.blue,
+a.blue {
     font-weight: 400;
     background-color: #0f6dcd;
     color: white;
 }
 
-button.blue:hover {
+button.blue:hover,
+a.blue:hover {
     background-color: #a00e9e;
 }
 

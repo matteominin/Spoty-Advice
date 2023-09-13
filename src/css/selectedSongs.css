@@ -89,13 +89,15 @@
   font-size: 14px;
 }
 .selectedSongs .submit {
+  display: block;
+  width: auto;
   margin: 0 auto;
 }
-.selectedSongs .submit:disabled {
-  color: rgba(255, 255, 255, 0.447);
+.selectedSongs .submit.disabled {
+  color: rgba(255, 255, 255, 0.247);
   background-color: #0f6dcd;
 }
-.selectedSongs .submit:hover:disabled {
+.selectedSongs .submit.disabled:hover {
   transform: none;
 }
 

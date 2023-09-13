@@ -39,3 +39,7 @@ export interface SearchInterface {
         items: Array<SearchItemInterface>
     }
 }
+
+export interface RecommendationInterface {
+    tracks: Array<SearchItemInterface>
+}
