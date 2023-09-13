@@ -45,6 +45,11 @@
         pointer-events: all;
     }
 
+    a {
+        margin-right: 60px;
+        pointer-events: all;
+    }
+
     .left:hover {
         transform: scale(1.02);
     }
@@ -71,7 +76,8 @@
         padding: 0 10px;
         margin-bottom: 0;
 
-        button {
+        button,
+        a {
             margin-right: 25px;
             padding: 10px 30px;
         }
@@ -80,7 +86,9 @@
 
 @media (max-width: 400px) {
     .navBar {
-        button {
+
+        button,
+        a {
             margin-right: 25px;
             padding: 8px 25px;
         }

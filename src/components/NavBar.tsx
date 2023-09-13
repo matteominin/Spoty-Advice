@@ -12,15 +12,16 @@ const NavBar = () => {
                     <img src={logo} alt="Spoty Advice Logo" />
                 </Link>
             </div>
-
-            {!accessToken && <Link className="green" to="/login">LogIn</Link>}
-            {accessToken &&
+            {accessToken ?
                 <button
                     className="transparent"
                     onClick={() => { localStorage.clear(); window.location.href = '/' }}
                 >
                     LogOut
-                </button>}
+                </button>
+                :
+                <Link className="green" to="/login">Login</Link>
+            }
         </nav>
     )
 }

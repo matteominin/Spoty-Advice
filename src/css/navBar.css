@@ -39,6 +39,10 @@
   margin-right: 100px;
   pointer-events: all;
 }
+.navBar a {
+  margin-right: 60px;
+  pointer-events: all;
+}
 .navBar .left:hover {
   transform: scale(1.02);
 }
@@ -61,13 +65,15 @@
     padding: 0 10px;
     margin-bottom: 0;
   }
-  .navBar button {
+  .navBar button,
+  .navBar a {
     margin-right: 25px;
     padding: 10px 30px;
   }
 }
 @media (max-width: 400px) {
-  .navBar button {
+  .navBar button,
+  .navBar a {
     margin-right: 25px;
     padding: 8px 25px;
   }

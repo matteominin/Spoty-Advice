@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 const Login = () => {
     const client_id = '623812b29774477499af58e7558d5351'
-    const redirect_uri = 'http://localhost:5173/callback'
+    const redirect_uri = 'https://music-test-db56e.web.app/callback'
     const codeVerifier = generateRandomString(128)
 
     useEffect(() => {
