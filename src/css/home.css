@@ -9,6 +9,9 @@
 .page-container .title {
   font-size: 100px;
   margin-bottom: 0;
+  color: #f2f2f2;
+}
+.page-container span {
   color: #0f6dcd;
 }
 .page-container .subtitle {
@@ -25,13 +28,6 @@
 }
 .page-container .right {
   flex: 0.25;
-}
-
-.background {
-  background-image: url("../assets/background_large.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 }
 
 @media (max-width: 1600px) {
@@ -81,10 +77,6 @@
   }
   .background {
     background-image: url("../assets/background_medium.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: unset;
   }
 }
 @media (max-width: 800px) {

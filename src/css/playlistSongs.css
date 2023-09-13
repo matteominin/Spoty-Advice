@@ -90,6 +90,9 @@
   margin-top: 30px;
   padding: 0 10px;
 }
+.playlistSongs__songs .preview {
+  display: none;
+}
 
 @media (max-width: 600px) {
   .playlistSongs__description .name {

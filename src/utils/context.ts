@@ -7,3 +7,12 @@ interface SelectedSongsContextInterface {
 }
 
 export const SelectedSongsContext = createContext<SelectedSongsContextInterface>({ selectedSongs: [] as Array<SongItemInterface>, setSelectedSongs: () => { } })
+
+interface AudioPlayerContextInterface {
+    playingSong: { audio: HTMLAudioElement, preview_url: string },
+    setPlayingSong: any
+}
+
+export const AudioPlayerContext = createContext<AudioPlayerContextInterface>(
+    { playingSong: { audio: new Audio(), preview_url: "" }, setPlayingSong: () => { } }
+)

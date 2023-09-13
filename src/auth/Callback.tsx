@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 const Callback = () => {
-    const redirect_uri = 'http://localhost:5173/callback'        //https://music-test-db56e.web.app/callback
+    const redirect_uri = 'https://music-test-db56e.web.app/callback'        //https://music-test-db56e.web.app/callback
     const params = new URLSearchParams(window.location.search)
     const code = params.get('code') || ''
     const codeVerifier = localStorage.getItem('code_verifier') || ''

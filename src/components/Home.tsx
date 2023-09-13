@@ -6,12 +6,14 @@ import { SongItemInterface } from "../interfaces/playlist.interface"
 import { SelectedSongsContext } from "../utils/context"
 import SelectedSongs from "./SelectedSongs"
 import '../css/home.css'
+import Background from "./Background"
 
 const Home = () => {
     const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
 
     return (
-        <div className="background">
+        <>
+            <Background />
             <NavBar />
             <div className="page-container">
                 <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
@@ -27,7 +29,7 @@ const Home = () => {
                     </div>
                 </SelectedSongsContext.Provider>
             </div>
-        </div>
+        </>
     )
 }
 

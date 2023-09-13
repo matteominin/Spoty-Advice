@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 import '../css/recommendation.css'
 import { SearchItemInterface } from '../interfaces/playlist.interface'
+import Background from './Background'
+import Song from './Song'
+import NavBar from './NavBar'
+import { AudioPlayerContext } from '../utils/context'
 
 const Recommendation = () => {
     const [recommendation, setRecommendation] = useState<Array<SearchItemInterface>>([])
+    const [playingSong, setPlayingSong] = useState<{ audio: HTMLAudioElement, preview_url: string }>({ audio: new Audio(), preview_url: "" })
     const [error, setError] = useState<string>("")
     const params = new URLSearchParams(window.location.search).get('trackList')
 
     useEffect(() => {
-        fetch("https://api.spotify.com/v1/recommendations?seed_tracks=" + params, {
+        fetch("https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=" + params, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token")
             }
@@ -27,13 +32,20 @@ const Recommendation = () => {
     }, [])
 
     return (
-        <div className='recommendation'>
-            <h2>Recommendations</h2>
+        <>
+            <Background />
+            <NavBar />
+            <div className='recommendation'>
+                <h1 className='title'>We <span>selected</span> for you these <span>songs!</span></h1>
+                <AudioPlayerContext.Provider value={{ playingSong, setPlayingSong }}>
+                    <div className="songs-container">
+                        {recommendation?.map((song, i) => <Song key={song.id} track={song} index={i} />)}
+                    </div>
+                </AudioPlayerContext.Provider>
 
-            {recommendation?.map(song => <p>{song.name}</p>)}
-
-            {error && <p className="error">{error}</p>}
-        </div>
+                {error && <p className="error">{error}</p>}
+            </div>
+        </>
     )
 }
 

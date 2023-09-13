@@ -1,0 +1,30 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background_large.png');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    position: fixed;
+    background-color: #121212;
+    z-index: -1;
+}
+
+@media (max-width: 1000px) {
+    .background {
+        background-image: url('../assets/background_medium.png');
+    }
+}
+
+@media (max-width: 800px) {
+    .background {
+        background-size: auto 100%;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .background {
+        background-image: url('../assets/background_small.png');
+        background-position: bottom;
+    }
+}

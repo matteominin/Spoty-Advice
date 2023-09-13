@@ -1,3 +1,40 @@
-.recommendation {
-  border: 1px solid red;
+.recommendation .title {
+  color: #f2f2f2;
+  font-size: 32px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 0;
+}
+.recommendation .subtitle,
+.recommendation span {
+  color: #b518aa;
+}
+.recommendation .songs-container {
+  width: 90%;
+  margin: 0 auto;
+}
+.recommendation .songs-container .song {
+  background-color: rgba(105, 107, 111, 0.6980392157);
+  margin: 8px auto;
+}
+.recommendation .songs-container .song button {
+  display: none;
+}
+.recommendation .songs-container .song .player {
+  display: block;
+}
+.recommendation .songs-container .song .player.disabled {
+  visibility: hidden;
+}
+.recommendation .songs-container .song:hover {
+  background-color: rgba(189, 189, 189, 0.7);
+}
+
+@media (min-width: 600px) {
+  .recommendation .title {
+    padding: 110px 0 35px 0;
+    width: 400px;
+    font-size: 45px;
+    margin: 0 auto;
+  }
 }/*# sourceMappingURL=recommendation.css.map */

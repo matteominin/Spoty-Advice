@@ -22,7 +22,8 @@ export interface SongItemInterface {
         album: { name: string, images: Array<{ url: string }> },
         name: string,
         artists: Array<{ name: string }>,
-        explictit: boolean
+        explictit: boolean,
+        preview_url: string | null
     }
 }
 
@@ -31,7 +32,8 @@ export interface SearchItemInterface {
     album: { name: string, images: Array<{ url: string }> },
     name: string,
     artists: Array<{ name: string }>,
-    explictit: boolean
+    explictit: boolean,
+    preview_url: string | null
 }
 
 export interface SearchInterface {

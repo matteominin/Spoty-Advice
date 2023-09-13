@@ -1,3 +1,51 @@
 .recommendation {
-    border: 1px solid red;
+    .title {
+        color: #f2f2f2;
+        font-size: 32px;
+        text-align: center;
+        padding: 20px;
+        margin-top: 0;
+    }
+
+    .subtitle,
+    span {
+        color: #b518aa;
+    }
+
+    .songs-container {
+        width: 90%;
+        margin: 0 auto;
+
+        .song {
+            background-color: #696b6fb2;
+            margin: 8px auto;
+
+            button {
+                display: none;
+            }
+
+            .player {
+                display: block;
+            }
+
+            .player.disabled {
+                visibility: hidden;
+            }
+        }
+
+        .song:hover {
+            background-color: rgba(189, 189, 189, 0.7);
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .recommendation {
+        .title {
+            padding: 110px 0 35px 0;
+            width: 400px;
+            font-size: 45px;
+            margin: 0 auto;
+        }
+    }
 }

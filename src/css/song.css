@@ -68,6 +68,12 @@
 .song button:hover {
   transform: none;
 }
+.song .player {
+  display: none;
+  width: 18px;
+  padding: 0 20px;
+  cursor: pointer;
+}
 .song .add {
   display: none;
 }

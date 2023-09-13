@@ -1,7 +1,9 @@
 import { useContext } from 'react'
 import { SongItemInterface } from '../interfaces/playlist.interface'
-import { SelectedSongsContext } from '../utils/context'
+import { AudioPlayerContext, SelectedSongsContext } from '../utils/context'
 import addIcon from '../assets/add.png'
+import playIcon from '../assets/play.png'
+import pauseIcon from '../assets/pause.png'
 import '../css/song.css'
 
 interface PropsInterface {
@@ -10,13 +12,16 @@ interface PropsInterface {
         album: { name: string, images: Array<{ url: string }> },
         name: string,
         artists: Array<{ name: string }>,
-        explictit: boolean
+        explictit: boolean,
+        preview_url: string | null
     },
     index: number
 }
 
 const Song = ({ track, index }: PropsInterface) => {
     const { selectedSongs, setSelectedSongs } = useContext(SelectedSongsContext)
+    const { playingSong, setPlayingSong } = useContext(AudioPlayerContext)
+
     const getArtistsList = (artists: any) => {
         let artistsArray: Array<any> = []
         artists.forEach((artist: any) => {
@@ -38,6 +43,30 @@ const Song = ({ track, index }: PropsInterface) => {
         return selectedSongs.find(song => song.track.id === id)
     }
 
+    const playSong = () => {
+        if (!track.preview_url) return
+
+        if (playingSong.preview_url === track.preview_url) {
+            playingSong.audio.pause()
+            setPlayingSong({ audio: new Audio(), preview_url: "" })
+            return
+        }
+
+        if (playingSong.preview_url) {
+            playingSong.audio.pause()
+        }
+
+        const audio = new Audio(track.preview_url)
+
+        audio.addEventListener("ended", function () {
+            setPlayingSong({ audio: new Audio(), preview_url: "" })
+        });
+
+        audio.play()
+
+        setPlayingSong({ audio, preview_url: track.preview_url })
+    }
+
     return (
         <li className="song">
             <p className="index">{index + 1}</p>
@@ -54,6 +83,11 @@ const Song = ({ track, index }: PropsInterface) => {
             {isSelected(track.id) ?
                 <button className='remove red' onClick={() => removeSong(track.id)}>Remove</button> :
                 <button className='green' onClick={() => selectSong({ track })}>Add</button>
+            }
+            {playingSong.preview_url === track.preview_url ?
+                <img className={track.preview_url ? 'player' : 'player disabled'} src={pauseIcon} onClick={playSong} alt="pause icon" />
+                :
+                <img className={track.preview_url ? 'player' : 'player disabled'} src={playIcon} onClick={playSong} alt="play icon" />
             }
 
             <img
