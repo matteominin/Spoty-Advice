@@ -7,6 +7,8 @@
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
+  max-width: 750px;
+  margin: 20px auto;
 }
 .selectedSongs h2 {
   text-align: center;
@@ -112,5 +114,28 @@
   }
   .selectedSongs.desktop {
     display: none;
+  }
+}
+@media (max-width: 450px) {
+  .selectedSongs.mobile {
+    padding: 30px 5px;
+  }
+  .selectedSongs.mobile h2 {
+    font-size: 27px;
+  }
+  .selectedSongs.mobile ul {
+    margin-top: 5px;
+  }
+  .selectedSongs.mobile .item p {
+    font-size: 13px;
+  }
+  .selectedSongs.mobile .item .text {
+    padding-right: 5px;
+    margin-left: 8px;
+  }
+  .selectedSongs.mobile .item button {
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 400;
   }
 }/*# sourceMappingURL=selectedSongs.css.map */

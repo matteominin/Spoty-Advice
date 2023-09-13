@@ -7,7 +7,7 @@
   border-radius: 10px;
   overflow: hidden;
   align-items: center;
-  margin: 5px 10px;
+  margin: 5px 10px 5px 10px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -75,13 +75,24 @@
     max-width: 300px;
   }
 }
-@media (max-width: 780px) {
+@media (max-width: 1190px) {
   .searchItem {
     max-width: 250px;
   }
 }
-@media (max-width: 670px) {
+@media (max-width: 900px) {
   .searchItem {
+    max-width: 300px;
+  }
+}
+@media (max-width: 710px) {
+  .searchItem {
+    margin-right: 0;
     max-width: 400px;
+  }
+}
+@media (max-width: 500px) {
+  .searchItem {
+    width: 95%;
   }
 }/*# sourceMappingURL=searchItem.css.map */

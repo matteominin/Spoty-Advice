@@ -35,10 +35,6 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
                 setSongs(data)
             })
             .catch(e => {
-                if (e.message === "Unauthorized") {
-                    window.location.href = "/login"
-                    return
-                }
                 setError(e.message || "Unexpected error")
             });
         setGradientColor(gradientColorArray[Math.floor(Math.random() * gradientColorArray.length)])

@@ -9,19 +9,18 @@
     .title {
         font-size: 100px;
         margin-bottom: 0;
-        color: color(srgb 0.0604 0.4268 0.805);
+        color: #0f6dcd;
     }
 
     .subtitle {
         font-size: 50px;
         margin-top: 10px;
+        color: #b518aa;
     }
 
     .title,
     .subtitle {
-        span {
-            color: color(srgb 0.71 0.0958 0.6655);
-        }
+        margin-left: 30px;
     }
 
     .left {
@@ -38,7 +37,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-position: top;
 }
 
 @media (max-width: 1600px) {
@@ -57,6 +55,20 @@
     .page-container {
         padding: 70px 20px 0 20px;
 
+        .title {
+            font-size: 70px;
+            margin-top: 50px;
+        }
+
+        .subtitle {
+            font-size: 40px;
+        }
+
+        .title,
+        .subtitle {
+            max-width: 600px;
+        }
+
         .left {
             flex: 0.6;
         }
@@ -72,6 +84,11 @@
         padding: 70px 10px 0 10px;
         flex-direction: column;
 
+        .title,
+        .subtitle {
+            padding-right: 100px;
+        }
+
         .left {
             flex: 1;
         }
@@ -79,5 +96,59 @@
         .right {
             flex: 1;
         }
+    }
+}
+
+@media (max-width: 700px) {
+    .page-container {
+        .title {
+            font-size: 60px;
+        }
+
+        .subtitle {
+            font-size: 35px;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .page-container {
+
+        .title,
+        .subtitle {
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 30px;
+        }
+
+        .title {
+            padding-top: 50px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .page-container {
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .page-container {
+
+        .title,
+        .subtitle {
+            padding: 0 15px;
+        }
+
+        .title {
+            padding-top: 50px;
+            font-size: 10vw;
+        }
+
+        .subtitle {
+            font-size: 6.5vw;
+        }
+
     }
 }

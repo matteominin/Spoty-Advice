@@ -27,10 +27,6 @@ const Playlists = () => {
                 setUserData(data)
             })
             .catch(e => {
-                if (e.message === 'Unauthorized') {
-                    window.location.href = '/login'
-                    return;
-                }
                 setError(e.message || 'Unexpected error')
             })
     }, [])
@@ -54,10 +50,6 @@ const Playlists = () => {
                 next = data.next
                 allItems = [...allItems, ...data.items]
             } catch (error: any) {
-                if (error.message === 'Unauthorized') {
-                    window.location.href = '/login'
-                    return;
-                }
                 setError(error.message || 'Unexpected error')
             }
         }
@@ -83,17 +75,15 @@ const Playlists = () => {
             const data = await res.json()
             setUserData({ ...data, items: [...userData.items, ...data.items] })
         } catch (err: any) {
-            if (err.message === 'Unauthorized') {
-                window.location.href = '/login'
-                return;
-            }
-
             setError(err.message || 'Unexpected error')
         }
     }
 
     const handleSelectPlaylist = (playlist: PlaylistItemInterface) => {
-        if (selectedPlaylist && selectedPlaylist.id == playlist.id) return;
+        if (selectedPlaylist?.id == playlist.id) {
+            setSelectedPlaylist(undefined)
+            return;
+        }
         setSelectedPlaylist(playlist)
 
         const selectSongs = document.querySelector('.selectSongs')

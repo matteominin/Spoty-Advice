@@ -78,6 +78,10 @@
     button:hover {
         transform: none;
     }
+
+    .add {
+        display: none;
+    }
 }
 
 .song:hover {
@@ -97,6 +101,28 @@
     .song {
         .album {
             display: none;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .song {
+        p {
+            font-size: 13px;
+        }
+
+        .text {
+            padding-right: 5px;
+        }
+
+        .index {
+            margin-left: 13px;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 400;
         }
     }
 }

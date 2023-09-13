@@ -28,4 +28,15 @@
 }
 .playlistsContainer .selectSongs .playlistSongs {
   width: 100%;
+}
+
+@media (max-width: 600px) {
+  .playlistsContainer h2 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 450px) {
+  .playlistsContainer h2 {
+    font-size: 27px;
+  }
 }/*# sourceMappingURL=playlists.css.map */

@@ -7,6 +7,8 @@
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
+    max-width: 750px;
+    margin: 20px auto;
 
     h2 {
         text-align: center;
@@ -130,5 +132,36 @@
 
     .selectedSongs.desktop {
         display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .selectedSongs.mobile {
+        padding: 30px 5px;
+
+        h2 {
+            font-size: 27px;
+        }
+
+        ul {
+            margin-top: 5px;
+        }
+
+        .item {
+            p {
+                font-size: 13px;
+            }
+
+            .text {
+                padding-right: 5px;
+                margin-left: 8px;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
     }
 }

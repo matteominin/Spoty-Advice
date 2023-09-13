@@ -30,10 +30,6 @@ const SearchBar = () => {
             setResults(data)
         } catch (error: any) {
             setResults(undefined)
-            if (error.message === 'Unauthorized') {
-                localStorage.removeItem('access_token')
-                window.location.href = "/login"
-            }
             setError(error.message || "Unexpected error")
         }
     }

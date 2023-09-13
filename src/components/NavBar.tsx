@@ -11,17 +11,17 @@ const NavBar = () => {
                 <Link to='/' className="logo">
                     <img src={logo} alt="Spoty Advice Logo" />
                 </Link>
-                <h1>Music Advice</h1>
             </div>
-
-            {!accessToken && <Link className="green" to="/login">LogIn</Link>}
-            {accessToken &&
+            {accessToken ?
                 <button
                     className="transparent"
                     onClick={() => { localStorage.clear(); window.location.href = '/' }}
                 >
                     LogOut
-                </button>}
+                </button>
+                :
+                <Link className="green" to="/login">Login</Link>
+            }
         </nav>
     )
 }
