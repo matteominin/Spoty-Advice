@@ -7,11 +7,13 @@
   height: 120px;
   padding: 0 30px;
   z-index: 100;
+  pointer-events: none;
 }
 .navBar .left {
   display: flex;
   flex-direction: row;
   transition: all 0.2s ease-in-out;
+  pointer-events: all;
 }
 .navBar .left .logo {
   height: 100%;
@@ -35,6 +37,7 @@
 }
 .navBar button {
   margin-right: 100px;
+  pointer-events: all;
 }
 .navBar .left:hover {
   transform: scale(1.02);

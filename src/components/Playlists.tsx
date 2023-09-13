@@ -12,7 +12,7 @@ const Playlists = () => {
     const accessToken = localStorage.getItem('access_token')
 
     useEffect(() => {
-        fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "3" }), {   // TODO: remove limit
+        fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "6" }), {   // TODO: remove limit
             headers: {
                 Authorization: 'Bearer ' + accessToken
             }

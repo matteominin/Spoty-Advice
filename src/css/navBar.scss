@@ -7,6 +7,7 @@
     height: 120px;
     padding: 0 30px;
     z-index: 100;
+    pointer-events: none;
 
     .left {
         display: flex;
@@ -35,10 +36,13 @@
             color: #1ed75f;
             display: none;
         }
+
+        pointer-events: all;
     }
 
     button {
         margin-right: 100px;
+        pointer-events: all;
     }
 
     .left:hover {

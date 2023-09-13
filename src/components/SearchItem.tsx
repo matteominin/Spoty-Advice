@@ -33,11 +33,18 @@ const SearchItem = ({ track }: SongItemInterface) => {
         if (deleteEffect) className += " canDelete"
         return className
     }
-    const colorArray: Array<string> = ["rgba(16, 81, 168, 0.5)", "rgba(181, 67, 173, 0.5)", "rgba(67, 181, 112, 0.5)"]
+    const colorArray: Array<string> = ["rgba(16, 81, 168, 0.5)", "rgba(165, 21, 179, 0.5)", "rgba(21, 171, 179, 0.85)", "rgba(179, 21, 94, 0.68)"]
 
     const randomColor = () => {
         return colorArray[Math.floor(Math.random() * colorArray.length)]
     }
+
+    /* useEffect(() => {
+        const randomColor = () => {
+            return colorArray[Math.floor(Math.random() * colorArray.length)]
+        }
+        setColor(randomColor())
+    }, []) */
 
     return (
         <div
