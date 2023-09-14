@@ -15,10 +15,11 @@ interface PropsInterface {
         explictit: boolean,
         preview_url: string | null
     },
+    songLimit?: boolean,
     index: number
 }
 
-const Song = ({ track, index }: PropsInterface) => {
+const Song = ({ track, index, songLimit = true }: PropsInterface) => {
     const { selectedSongs, setSelectedSongs } = useContext(SelectedSongsContext)
     const { playingSong, setPlayingSong } = useContext(AudioPlayerContext)
 
@@ -31,7 +32,8 @@ const Song = ({ track, index }: PropsInterface) => {
     }
 
     const selectSong = (track: SongItemInterface) => {
-        if (selectedSongs.length >= 5 || selectedSongs.find(song => song.track.id === track.track.id)) return;  // TODO: add error message
+        if (songLimit &&
+            (selectedSongs.length >= 5 || selectedSongs.find(song => song.track.id === track.track.id))) return;  // TODO: add error message
         setSelectedSongs([...selectedSongs, track])
     }
 

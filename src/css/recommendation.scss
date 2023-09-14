@@ -1,24 +1,128 @@
+@use "../utils/colors";
+
 .recommendation {
     .title {
         color: #f2f2f2;
         font-size: 32px;
         text-align: center;
-        padding: 20px;
-        margin-top: 0;
+        padding: 20px 20px 0 20px;
+        margin: 0 auto;
     }
 
     .subtitle,
     span {
-        color: #b518aa;
+        color: colors.$second;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 60px 20px 20px 20px;
+
+        button {
+            padding: 10px 20px;
+            font-weight: 400;
+            color: white;
+        }
+
+        &__main {
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                background-color: colors.$darkgrey;
+                transition: all 0.3s ease-in-out;
+            }
+
+            button.selected {
+                transform: scale(1.05);
+                background-color: colors.$second;
+            }
+        }
+
+        &__createPlaylist {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease-in;
+            padding-top: 30px;
+
+            button {
+                margin: 15px auto 0 auto;
+                padding: 8px 30px;
+                background-color: colors.$blue;
+            }
+
+            button:disabled {
+                background-color: #696b6fb2;
+            }
+        }
+
+        &__createPlaylist.active {
+            height: 100%;
+            opacity: 1;
+            pointer-events: all;
+            margin-bottom: 20px;
+        }
+
+        &__select {
+            text-align: center;
+            height: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease-in;
+
+            p {
+                margin: 0 auto;
+            }
+
+            .add {
+                background-color: colors.$blue;
+                display: none;
+                width: 200px;
+                margin: 0 auto 10px auto;
+            }
+
+            .add.active {
+                display: block;
+            }
+        }
+
+        &__select.active {
+            height: 100%;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .message {
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        .message.error {
+            color: black;
+            font-weight: 500;
+        }
     }
 
     .songs-container {
         width: 90%;
+        height: 65vh;
+        overflow-y: scroll;
         margin: 0 auto;
+        margin-bottom: 50px;
+        border-top: 3px solid rgba(255, 255, 255, 0.432);
+
 
         .song {
             background-color: #696b6fb2;
-            margin: 8px auto;
+            margin: 0px auto 8px auto;
 
             button {
                 display: none;
@@ -35,6 +139,22 @@
 
         .song:hover {
             background-color: rgba(189, 189, 189, 0.7);
+        }
+    }
+
+    .songs-container .song~.song {
+        margin: 8px auto;
+    }
+
+    .songs-container.selecting {
+        .song {
+            button {
+                display: block;
+            }
+
+            .player {
+                display: none;
+            }
         }
     }
 }

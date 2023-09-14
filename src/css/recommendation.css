@@ -2,20 +2,105 @@
   color: #f2f2f2;
   font-size: 32px;
   text-align: center;
-  padding: 20px;
-  margin-top: 0;
+  padding: 20px 20px 0 20px;
+  margin: 0 auto;
 }
 .recommendation .subtitle,
 .recommendation span {
-  color: #b518aa;
+  color: #ea1adb;
+}
+.recommendation .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 60px 20px 20px 20px;
+}
+.recommendation .actions button {
+  padding: 10px 20px;
+  font-weight: 400;
+  color: white;
+}
+.recommendation .actions__main {
+  display: flex;
+  justify-content: space-around;
+}
+.recommendation .actions__main button {
+  background-color: #2d2d2d;
+  transition: all 0.3s ease-in-out;
+}
+.recommendation .actions__main button.selected {
+  transform: scale(1.05);
+  background-color: #ea1adb;
+}
+.recommendation .actions__createPlaylist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in;
+  padding-top: 30px;
+}
+.recommendation .actions__createPlaylist button {
+  margin: 15px auto 0 auto;
+  padding: 8px 30px;
+  background-color: #0f6dcd;
+}
+.recommendation .actions__createPlaylist button:disabled {
+  background-color: rgba(105, 107, 111, 0.6980392157);
+}
+.recommendation .actions__createPlaylist.active {
+  height: 100%;
+  opacity: 1;
+  pointer-events: all;
+  margin-bottom: 20px;
+}
+.recommendation .actions__select {
+  text-align: center;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in;
+}
+.recommendation .actions__select p {
+  margin: 0 auto;
+}
+.recommendation .actions__select .add {
+  background-color: #0f6dcd;
+  display: none;
+  width: 200px;
+  margin: 0 auto 10px auto;
+}
+.recommendation .actions__select .add.active {
+  display: block;
+}
+.recommendation .actions__select.active {
+  height: 100%;
+  opacity: 1;
+  pointer-events: all;
+}
+.recommendation .actions .message {
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.recommendation .actions .message.error {
+  color: black;
+  font-weight: 500;
 }
 .recommendation .songs-container {
   width: 90%;
+  height: 65vh;
+  overflow-y: scroll;
   margin: 0 auto;
+  margin-bottom: 50px;
+  border-top: 3px solid rgba(255, 255, 255, 0.432);
 }
 .recommendation .songs-container .song {
   background-color: rgba(105, 107, 111, 0.6980392157);
-  margin: 8px auto;
+  margin: 0px auto 8px auto;
 }
 .recommendation .songs-container .song button {
   display: none;
@@ -28,6 +113,15 @@
 }
 .recommendation .songs-container .song:hover {
   background-color: rgba(189, 189, 189, 0.7);
+}
+.recommendation .songs-container .song ~ .song {
+  margin: 8px auto;
+}
+.recommendation .songs-container.selecting .song button {
+  display: block;
+}
+.recommendation .songs-container.selecting .song .player {
+  display: none;
 }
 
 @media (min-width: 600px) {

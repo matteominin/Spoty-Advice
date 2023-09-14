@@ -1,3 +1,5 @@
+@use "../utils/colors";
+
 .navBar {
     position: fixed;
     width: 100vw;
@@ -30,13 +32,6 @@
             transform: none;
         }
 
-        h1 {
-            margin: auto 20px;
-            font-size: 33px;
-            color: #1ed75f;
-            display: none;
-        }
-
         pointer-events: all;
     }
 
@@ -61,11 +56,11 @@
 
         button {
             border: none !important;
-            background-color: #b518aa !important;
+            background-color: colors.$second !important;
         }
 
         button:hover {
-            background-color: #443643 !important;
+            background-color: colors.$grey !important;
         }
     }
 }

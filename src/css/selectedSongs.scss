@@ -1,3 +1,5 @@
+@use "../utils/colors";
+
 .selectedSongs {
     position: sticky;
     top: 150px;
@@ -83,7 +85,7 @@
             transform: scale(1.03);
 
             button {
-                background-color: #d92424;
+                background-color: colors.$red-hover;
             }
         }
 
@@ -110,7 +112,7 @@
 
     .submit.disabled {
         color: rgba(255, 255, 255, 0.247);
-        background-color: #0f6dcd;
+        background-color: colors.$blue;
     }
 
     .submit.disabled:hover {

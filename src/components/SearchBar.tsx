@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SearchInterface } from "../interfaces/playlist.interface"
 import SearchItem from "./SearchItem"
 import searchIcon from '../assets/search.png'
@@ -10,12 +10,23 @@ const SearchBar = () => {
     const [error, setError] = useState<string>('')
     const accessToken: string = localStorage.getItem('access_token') as string
 
+    useEffect(() => {
+        if (!query) {
+            setResults(undefined)
+            return
+        }
+        const timeout = setTimeout(() => {
+            search()
+        }, 300)
+
+        return () => clearInterval(timeout)
+    }, [query])
+
     const hanldeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(encodeURIComponent(e.target.value))
     }
 
-    const search = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const search = async () => {
         setError('')
         try {
             const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
@@ -36,7 +47,7 @@ const SearchBar = () => {
     return (
         <div className="searchBar">
 
-            <form className="searchBox" onSubmit={search}>
+            <div className="searchBox">
                 <input
                     id="searchBox"
                     type="text"
@@ -47,7 +58,7 @@ const SearchBar = () => {
                 <label htmlFor="searchBox">
                     <img src={searchIcon} alt="search icon" />
                 </label>
-            </form>
+            </div>
 
             {error && <p className="error">{error}</p>}
 

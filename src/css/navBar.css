@@ -29,12 +29,6 @@
 .navBar .left .logo:hover {
   transform: none;
 }
-.navBar .left h1 {
-  margin: auto 20px;
-  font-size: 33px;
-  color: #1ed75f;
-  display: none;
-}
 .navBar button {
   margin-right: 100px;
   pointer-events: all;
@@ -53,7 +47,7 @@
   }
   .navBar button {
     border: none !important;
-    background-color: #b518aa !important;
+    background-color: #ea1adb !important;
   }
   .navBar button:hover {
     background-color: #443643 !important;

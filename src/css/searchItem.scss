@@ -1,3 +1,5 @@
+@use "../utils/colors";
+
 .searchItem {
     background-color: rgba(87, 87, 87, 0.66);
     display: flex;
@@ -61,7 +63,7 @@
 }
 
 .searchItem.selected {
-    background-color: #1ed75f;
+    background-color: colors.$green;
 }
 
 .searchItem.selected.canDelete:hover {

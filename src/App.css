@@ -90,6 +90,20 @@ a {
     margin: 20px;
 }
 
+/* INPUT */
+input {
+    height: 40px;
+    min-width: 200px;
+    border: none;
+    border-radius: 20px;
+    text-indent: 20px;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
 /* ERROR */
 .error {
     color: #be2323;

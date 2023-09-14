@@ -6,6 +6,7 @@
     background-size: auto 100%;
     position: fixed;
     background-color: #121212;
+    background-position: left;
     z-index: -1;
 }
 
@@ -15,16 +16,11 @@
     }
 }
 
-@media (max-width: 800px) {
-    .background {
-        background-size: auto 100%;
-    }
-}
-
-
 @media (max-width: 600px) {
     .background {
         background-image: url('../assets/background_small.png');
-        background-position: bottom;
+        background-position: bottom 100% left 25%;
+        background-size: auto 90%;
+        color: #ff8000;
     }
 }

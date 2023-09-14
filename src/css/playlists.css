@@ -13,6 +13,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  max-height: 250px;
+  overflow-y: auto;
+  border-top: 3px solid rgba(255, 255, 255, 0.2117647059);
 }
 .playlistsContainer__buttons {
   padding-top: 10px;

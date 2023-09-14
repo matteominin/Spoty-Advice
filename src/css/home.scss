@@ -1,3 +1,5 @@
+@use "../utils/colors";
+
 .page-container {
     display: flex;
     padding: 70px 40px 0 40px;
@@ -9,18 +11,13 @@
     .title {
         font-size: 100px;
         margin-bottom: 0;
-        //color: #0f6dcd;
-        color: #f2f2f2;
-    }
-
-    span {
-        color: #0f6dcd;
+        color: colors.$primary;
     }
 
     .subtitle {
         font-size: 50px;
         margin-top: 10px;
-        color: #b518aa;
+        color: colors.$second;
     }
 
     .title,
