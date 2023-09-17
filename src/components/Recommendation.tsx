@@ -66,20 +66,19 @@ const Recommendation = () => {
         }
     }
 
-    const handleCreatePlaylist = (playlistName: string) => {
-        (async () => {
-            setMessage({ type: "", message: "" })
-            try {
-                const playlist_id = await createPlaylist(playlistName)
-                const added = await addTracksToPlaylist(playlist_id, recommendation.map(song => `spotify:track:${song.id}`))
-                if (added) setMessage({ type: "success", message: "Songs added!" })
-            } catch (error: any) {
-                setStatus({
-                    createPlaylist: false, addToPlaylist: false, select: false
-                })
-                setMessage({ type: "error", message: error.message })
-            }
-        })()
+    const handleCreatePlaylist = async (playlistName: string) => {
+
+        setMessage({ type: "", message: "" })
+        try {
+            const playlist_id = await createPlaylist(playlistName)
+            const added = await addTracksToPlaylist(playlist_id, recommendation.map(song => `spotify:track:${song.id}`))
+            if (added) setMessage({ type: "success", message: "Songs added!" })
+        } catch (error: any) {
+            setStatus({
+                createPlaylist: false, addToPlaylist: false, select: false
+            })
+            setMessage({ type: "error", message: error.message })
+        }
     }
 
     /* const handleAddToPlaylist = (playlist_id: string) => {
@@ -103,21 +102,20 @@ const Recommendation = () => {
         setStatus({ createPlaylist: false, addToPlaylist: false, select: false, [e.target.name]: !status[e.target.name] })
     }
 
-    const handleAddToFavorite = () => {
-        (async () => {
-            const trackList = selectedSongs.map(song => song.track.id)
+    const handleAddToFavorite = async () => {
+        const trackList = selectedSongs.map(song => song.track.id)
 
-            try {
-                await addToFavorite(trackList)
-                setMessage({ type: "success", message: "Songs added to Favorite!" })
-            } catch (error: any) {
-                setMessage({ type: "error", message: error.message })
-            }
-            setStatus({
-                createPlaylist: false, addToPlaylist: false, select: false
-            })
-            setSelectedSongs([])
-        })()
+        try {
+            await addToFavorite(trackList)
+            setMessage({ type: "success", message: "Songs added to Favorite!" })
+        } catch (error: any) {
+            setMessage({ type: "error", message: error.message })
+        }
+        setStatus({
+            createPlaylist: false, addToPlaylist: false, select: false
+        })
+        setSelectedSongs([])
+
     }
 
     return (

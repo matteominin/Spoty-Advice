@@ -75,8 +75,7 @@
     &__songs {
         position: relative;
         z-index: 1;
-        height: 50vh;
-        min-height: 400px;
+        max-height: 50vh;
         margin: 20px auto 0 auto;
         list-style-type: none;
         padding: 0;

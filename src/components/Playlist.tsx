@@ -11,7 +11,7 @@ interface PlaylistProps {
 const Playlist = ({ playlist, selected, selectPlaylist }: PlaylistProps) => {
     return (
         <div className={selected ? "playlist selected" : "playlist"} onClick={() => selectPlaylist(playlist)}>
-            <img src={playlist.images[1].url} alt={playlist.name} />
+            <img src={playlist.images[1]?.url} alt={playlist.name} />   {/* TODO: image placeholder */}
             <p className='name'>{playlist.name}</p>
             <img className='arrow' src={arrowIcon} alt="arrow icon" />
         </div>
