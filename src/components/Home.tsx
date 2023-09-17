@@ -7,12 +7,13 @@ import { SelectedSongsContext } from "../utils/context"
 import SelectedSongs from "./SelectedSongs"
 import '../css/home.css'
 import Background from "./Background"
+import IsAuthenticated from "../auth/IsAuthenticated"
 
 const Home = () => {
     const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
 
     return (
-        <>
+        <IsAuthenticated>
             <Background />
             <NavBar />
             <div className="page-container">
@@ -29,7 +30,7 @@ const Home = () => {
                     </div>
                 </SelectedSongsContext.Provider>
             </div>
-        </>
+        </IsAuthenticated>
     )
 }
 

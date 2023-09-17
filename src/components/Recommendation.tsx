@@ -6,6 +6,7 @@ import Song from './Song'
 import NavBar from './NavBar'
 import { AudioPlayerContext, SelectedSongsContext } from '../utils/context'
 import { addTracksToPlaylist, createPlaylist, isPlaylistNameDuplicate, addToFavorite } from '../interfaces/recommendation'
+import IsAuthenticated from '../auth/IsAuthenticated'
 
 const Recommendation = () => {
     const [recommendation, setRecommendation] = useState<Array<SearchItemInterface>>([])
@@ -119,7 +120,7 @@ const Recommendation = () => {
     }
 
     return (
-        <>
+        <IsAuthenticated>
             <Background />
             <NavBar />
             <div className='recommendation'>
@@ -185,7 +186,7 @@ const Recommendation = () => {
                     </SelectedSongsContext.Provider>
                 </AudioPlayerContext.Provider>
             </div >
-        </>
+        </IsAuthenticated>
     )
 }
 

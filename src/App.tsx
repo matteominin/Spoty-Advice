@@ -24,9 +24,7 @@ function App() {
       element: <Recommendation />
     }
   ])
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

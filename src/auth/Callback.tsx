@@ -33,6 +33,7 @@ const Callback = () => {
             })
             .then(data => {
                 localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('expires_in', String(new Date().getTime() + data.expires_in * 1000));
                 localStorage.setItem('refresh_token', data.refresh_token);
                 window.location.href = '/'
             })

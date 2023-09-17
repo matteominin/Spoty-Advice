@@ -1,0 +1,71 @@
+.notAuthenticated .title {
+  font-size: 100px;
+  color: #0f6dcd;
+  margin: 0 auto;
+  padding: 140px 40px 0 40px;
+}
+.notAuthenticated .subtitle {
+  font-size: 50px;
+  margin-top: 10px;
+  color: #f2f2f2;
+  padding-left: 40px;
+}
+.notAuthenticated .title,
+.notAuthenticated .subtitle {
+  margin-left: 30px;
+}
+
+@media (max-width: 1200px) {
+  .notAuthenticated .title {
+    font-size: 70px;
+    margin-top: 50px;
+  }
+  .notAuthenticated .subtitle {
+    font-size: 40px;
+  }
+  .notAuthenticated .title,
+  .notAuthenticated .subtitle {
+    max-width: 600px;
+  }
+}
+@media (max-width: 1000px) {
+  .notAuthenticated .title,
+  .notAuthenticated .subtitle {
+    padding-right: 100px;
+  }
+}
+@media (max-width: 700px) {
+  .notAuthenticated .title {
+    font-size: 60px;
+  }
+  .notAuthenticated .subtitle {
+    font-size: 35px;
+  }
+  .notAuthenticated .title,
+  .notAuthenticated .subtitle {
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 30px;
+  }
+  .notAuthenticated .title {
+    padding-top: 50px;
+  }
+}
+@media (max-width: 600px) {
+  .notAuthenticated {
+    padding-top: 0;
+  }
+}
+@media (max-width: 550px) {
+  .notAuthenticated .title,
+  .notAuthenticated .subtitle {
+    padding: 0 15px;
+  }
+  .notAuthenticated .title {
+    padding-top: 50px;
+    font-size: 10vw;
+  }
+  .notAuthenticated .subtitle {
+    font-size: 6.5vw;
+  }
+}/*# sourceMappingURL=notAuthenticated.css.map */
