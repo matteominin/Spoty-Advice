@@ -6,15 +6,13 @@ const Callback = () => {
     const code = params.get('code') || ''
     const codeVerifier = localStorage.getItem('code_verifier') || ''
     const client_id = '623812b29774477499af58e7558d5351'
-    const client_secret = 'd5e3c3e10d8f4d9daa5ea27b4794937c'
 
     const body = new URLSearchParams({
         grant_type: "authorization_code",
         code,
         redirect_uri,
         client_id,
-        code_verifier: codeVerifier,
-        client_secret
+        code_verifier: codeVerifier
     })
 
     useEffect(() => {
@@ -35,6 +33,7 @@ const Callback = () => {
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('expires_in', String(new Date().getTime() + data.expires_in * 1000));
                 localStorage.setItem('refresh_token', data.refresh_token);
+                localStorage.removeItem('code_verifier');
                 window.location.href = '/'
             })
             .catch(error => {
@@ -42,10 +41,7 @@ const Callback = () => {
             });
     }, [])
 
-    return (
-        <div className="callback">
-        </div>
-    )
+    return null
 }
 
 export default Callback

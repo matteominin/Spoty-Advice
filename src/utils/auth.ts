@@ -22,3 +22,27 @@ export const generateCodeChallenge = async (codeVerifier: string) => {
 
     return base64encode(digest);
 }
+
+export const refreshAccessToken = async (refreshToken: string) => {
+    try {
+        const res = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                grant_type: 'refresh_token',
+                client_id: "623812b29774477499af58e7558d5351",
+                refresh_token: refreshToken,
+            })
+        })
+
+        if (!res.ok) {
+            throw new Error('Failed to refresh access token')
+        }
+
+        return res.json()
+    } catch (error) {
+        throw new Error("Unexpected error")
+    }
+}

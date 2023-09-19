@@ -29,13 +29,15 @@
 .navBar .left .logo:hover {
   transform: none;
 }
-.navBar button {
+.navBar .logout {
   margin-right: 100px;
   pointer-events: all;
 }
-.navBar a {
+.navBar .login {
   margin-right: 60px;
+  padding: 10px 40px;
   pointer-events: all;
+  color: white;
 }
 .navBar .left:hover {
   transform: scale(1.02);
@@ -45,11 +47,11 @@
   .navBar {
     height: 100px;
   }
-  .navBar button {
+  .navBar .logout {
     border: none !important;
     background-color: #ea1adb !important;
   }
-  .navBar button:hover {
+  .navBar .logout:hover {
     background-color: #443643 !important;
   }
 }
@@ -59,15 +61,13 @@
     padding: 0 10px;
     margin-bottom: 0;
   }
-  .navBar button,
-  .navBar a {
+  .navBar .logout {
     margin-right: 25px;
     padding: 10px 30px;
   }
 }
 @media (max-width: 400px) {
-  .navBar button,
-  .navBar a {
+  .navBar button {
     margin-right: 25px;
     padding: 8px 25px;
   }

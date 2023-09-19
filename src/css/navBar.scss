@@ -35,14 +35,16 @@
         pointer-events: all;
     }
 
-    button {
+    .logout {
         margin-right: 100px;
         pointer-events: all;
     }
 
-    a {
+    .login {
         margin-right: 60px;
+        padding: 10px 40px;
         pointer-events: all;
+        color: white;
     }
 
     .left:hover {
@@ -54,12 +56,12 @@
     .navBar {
         height: 100px;
 
-        button {
+        .logout {
             border: none !important;
             background-color: colors.$purple !important;
         }
 
-        button:hover {
+        .logout:hover {
             background-color: colors.$grey !important;
         }
     }
@@ -71,8 +73,7 @@
         padding: 0 10px;
         margin-bottom: 0;
 
-        button,
-        a {
+        .logout {
             margin-right: 25px;
             padding: 10px 30px;
         }
@@ -82,8 +83,7 @@
 @media (max-width: 400px) {
     .navBar {
 
-        button,
-        a {
+        button {
             margin-right: 25px;
             padding: 8px 25px;
         }

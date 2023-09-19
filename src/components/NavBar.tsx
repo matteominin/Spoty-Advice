@@ -1,6 +1,7 @@
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom'
 import '../css/navBar.css'
+import Login from '../auth/Login'
 
 const NavBar = () => {
     const accessToken = localStorage.getItem('access_token')
@@ -14,13 +15,13 @@ const NavBar = () => {
             </div>
             {accessToken ?
                 <button
-                    className="transparent"
+                    className="transparent logout"
                     onClick={() => { localStorage.clear(); window.location.href = '/' }}
                 >
                     LogOut
                 </button>
                 :
-                <Link className="green" to="/login">Login</Link>
+                <Login />
             }
         </nav>
     )
