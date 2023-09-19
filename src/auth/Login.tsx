@@ -1,7 +1,7 @@
 import { generateRandomString, generateCodeChallenge } from "../utils/auth"
+import { CLIENT_ID } from "../utils/auth"
 
 const Login = () => {
-    const client_id = '623812b29774477499af58e7558d5351'
     const redirect_uri = import.meta.env.MODE === "development" ? 'http://localhost:5173/callback' : "https://music-test-db56e.web.app/callback"
     const codeVerifier = generateRandomString(128)
 
@@ -15,7 +15,7 @@ const Login = () => {
 
                 let args = new URLSearchParams({
                     response_type: 'code',
-                    client_id,
+                    client_id: CLIENT_ID,
                     scope,
                     redirect_uri,
                     state,

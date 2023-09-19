@@ -1,4 +1,5 @@
 import NotAuthenticated from "../components/NotAuthenticated"
+import { refreshAccessToken } from "../utils/auth"
 
 const IsAuthenticated: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const accessToken = localStorage.getItem('access_token')
@@ -10,14 +11,22 @@ const IsAuthenticated: React.FC<{ children: React.ReactNode }> = ({ children }) 
     const now = new Date()
 
     if (expiresInDate < now) {
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('expires_in')
-        localStorage.removeItem('refresh_token')
-        localStorage.removeItem('code_verifier')
+        const refreshToken = localStorage.getItem('refresh_token')
+        localStorage.clear()
 
+        if (!refreshToken) return <NotAuthenticated />
+
+        console.log("refreshing token")
+
+        refreshAccessToken(refreshToken)
+            .then(data => {
+                localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('expires_in', String(new Date().getTime() + data.expires_in * 1000));
+                localStorage.setItem('refresh_token', data.refresh_token);
+            });
     }
 
-    return <>{children}{accessToken}</>
+    return <>{children}</>
 }
 
 export default IsAuthenticated

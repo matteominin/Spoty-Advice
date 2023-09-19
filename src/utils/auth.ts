@@ -1,3 +1,5 @@
+export const CLIENT_ID = "623812b29774477499af58e7558d5351"
+
 export const generateRandomString = (length: number) => {
     let text = '';
     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -32,7 +34,7 @@ export const refreshAccessToken = async (refreshToken: string) => {
             },
             body: new URLSearchParams({
                 grant_type: 'refresh_token',
-                client_id: "623812b29774477499af58e7558d5351",
+                client_id: CLIENT_ID,
                 refresh_token: refreshToken,
             })
         })
