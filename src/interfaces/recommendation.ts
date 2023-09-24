@@ -1,9 +1,14 @@
 import { SearchItemInterface } from "./playlist.interface";
+import { isExpired, refreshAccessToken } from "../utils/auth";
 
 export const isPlaylistNameDuplicate = async (name: string) => {
     if (!name) return true
     const playlists: Array<string> = []
     let next = ""
+
+    if (isExpired()) {
+        refreshAccessToken(localStorage.getItem('refresh_token') as string)
+    }
 
     do {
         try {
@@ -35,7 +40,9 @@ export const isPlaylistNameDuplicate = async (name: string) => {
 export const createPlaylist = async (playlist_name: string) => {
     const access_token = localStorage.getItem('access_token');
     if (!access_token) throw new Error('No access token found');
-
+    if (isExpired()) {
+        refreshAccessToken(localStorage.getItem('refresh_token') as string)
+    }
     try {
         const res = await fetch(`https://api.spotify.com/v1/me/playlists`, {
             method: 'POST',
@@ -59,6 +66,9 @@ export const createPlaylist = async (playlist_name: string) => {
 }
 
 export const addTracksToPlaylist = async (playlist_id: string, songList: Array<any>) => {
+    if (isExpired()) {
+        refreshAccessToken(localStorage.getItem('refresh_token') as string)
+    }
     try {
         const res = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks`, {
             method: 'POST',
@@ -81,6 +91,9 @@ export const addTracksToPlaylist = async (playlist_id: string, songList: Array<a
 }
 
 export const addToFavorite = async (trackList: Array<string>) => {
+    if (isExpired()) {
+        refreshAccessToken(localStorage.getItem('refresh_token') as string)
+    }
     try {
         const res = await fetch(`https://api.spotify.com/v1/me/tracks`, {
             method: 'PUT',

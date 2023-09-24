@@ -7,7 +7,7 @@
 }
 .recommendation .subtitle,
 .recommendation span {
-  color: #ea1adb;
+  color: #0f6dcd;
 }
 .recommendation .actions {
   display: flex;
@@ -122,6 +122,14 @@
 }
 .recommendation .songs-container.selecting .song .player {
   display: none;
+}
+
+.title_error {
+  color: #f2f2f2;
+  font-size: 32px;
+  text-align: center;
+  padding: 120px 20px 0 20px;
+  margin: 0 auto;
 }
 
 @media (min-width: 600px) {

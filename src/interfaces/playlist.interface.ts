@@ -45,3 +45,8 @@ export interface SearchInterface {
 export interface RecommendationInterface {
     tracks: Array<SearchItemInterface>
 }
+
+export interface selectedSongsInterface {
+    tracks: Array<SongItemInterface>,
+    settings: any
+}

@@ -1,12 +1,12 @@
 import { createContext } from "react";
-import { SongItemInterface } from "../interfaces/playlist.interface";
+import { selectedSongsInterface } from "../interfaces/playlist.interface";
 
 interface SelectedSongsContextInterface {
-    selectedSongs: Array<SongItemInterface>,
+    selectedSongs: selectedSongsInterface,
     setSelectedSongs: React.Dispatch<React.SetStateAction<any>>
 }
 
-export const SelectedSongsContext = createContext<SelectedSongsContextInterface>({ selectedSongs: [] as Array<SongItemInterface>, setSelectedSongs: () => { } })
+export const SelectedSongsContext = createContext<SelectedSongsContextInterface>({ selectedSongs: { tracks: [], settings: {} }, setSelectedSongs: () => { } })
 
 interface AudioPlayerContextInterface {
     playingSong: { audio: HTMLAudioElement, preview_url: string },

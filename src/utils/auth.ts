@@ -43,8 +43,23 @@ export const refreshAccessToken = async (refreshToken: string) => {
             throw new Error('Failed to refresh access token')
         }
 
-        return res.json()
+        const data = await res.json()
+
+        await localStorage.setItem('access_token', data.access_token);
+        await localStorage.setItem('expires_in', String(new Date().getTime() + data.expires_in * 1000));
+        await localStorage.setItem('refresh_token', data.refresh_token);
+        return true;
     } catch (error) {
-        throw new Error("Unexpected error")
+        localStorage.clear()
+        return false;
     }
+}
+
+export const isExpired = () => {
+    const expiresIn = localStorage.getItem('expires_in')
+    if (!expiresIn) return true
+    const now = new Date()
+    const expirationDate = new Date(parseInt(expiresIn))
+
+    return now > expirationDate
 }

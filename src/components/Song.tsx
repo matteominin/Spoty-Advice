@@ -33,16 +33,16 @@ const Song = ({ track, index, songLimit = true }: PropsInterface) => {
 
     const selectSong = (track: SongItemInterface) => {
         if (songLimit &&
-            (selectedSongs.length >= 5 || selectedSongs.find(song => song.track.id === track.track.id))) return;  // TODO: add error message
-        setSelectedSongs([...selectedSongs, track])
+            (selectedSongs.tracks.length >= 5 || selectedSongs.tracks.find(song => song.track.id === track.track.id))) return;  // TODO: add error message
+        setSelectedSongs({ ...selectedSongs, tracks: [...selectedSongs.tracks, track] })
     }
 
     const removeSong = (id: string) => {
-        setSelectedSongs(selectedSongs.filter(song => song.track.id !== id))
+        setSelectedSongs({ ...selectedSongs, tracks: selectedSongs.tracks.filter(song => song.track.id !== id) })
     }
 
     const isSelected = (id: string) => {
-        return selectedSongs.find(song => song.track.id === id)
+        return selectedSongs.tracks.find(song => song.track.id === id)
     }
 
     const playSong = () => {

@@ -3,6 +3,7 @@ import { SearchInterface } from "../interfaces/playlist.interface"
 import SearchItem from "./SearchItem"
 import searchIcon from '../assets/search.png'
 import '../css/searchBar.css'
+import { isExpired, refreshAccessToken } from "../utils/auth"
 
 const SearchBar = () => {
     const [query, setQuery] = useState<string>('')
@@ -28,6 +29,9 @@ const SearchBar = () => {
 
     const search = async () => {
         setError('')
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+        }
         try {
             const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
                 headers: {

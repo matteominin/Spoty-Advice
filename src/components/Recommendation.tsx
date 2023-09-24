@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import '../css/recommendation.css'
-import { SearchItemInterface, SongItemInterface } from '../interfaces/playlist.interface'
+import { SearchItemInterface, selectedSongsInterface } from '../interfaces/playlist.interface'
 import Background from './Background'
 import Song from './Song'
 import NavBar from './NavBar'
 import { AudioPlayerContext, SelectedSongsContext } from '../utils/context'
 import { addTracksToPlaylist, createPlaylist, isPlaylistNameDuplicate, addToFavorite } from '../interfaces/recommendation'
 import IsAuthenticated from '../auth/IsAuthenticated'
+import { isExpired, refreshAccessToken } from '../utils/auth'
 
 const Recommendation = () => {
     const [recommendation, setRecommendation] = useState<Array<SearchItemInterface>>([])
     const [playingSong, setPlayingSong] = useState<{ audio: HTMLAudioElement, preview_url: string }>({ audio: new Audio(), preview_url: "" })
     const [playlistName, setPlaylistName] = useState<string>("")
     const [message, setMessage] = useState<{ type: string, message: string }>({ type: "", message: "" })
-    const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
+    const [selectedSongs, setSelectedSongs] = useState<selectedSongsInterface>({ tracks: [], settings: {} })
 
     const [status, setStatus] = useState<any>({
         createPlaylist: false,
@@ -21,10 +22,16 @@ const Recommendation = () => {
         select: false
     })
 
-    const params = new URLSearchParams(window.location.search).get('trackList')
+    const trackList = new URLSearchParams(window.location.search).get('trackList')
+    const settings = new URLSearchParams(window.location.search).get('settings')
+    console.log(settings)
 
     useEffect(() => {
-        fetch("https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=" + params, {
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                .then(res => { console.log(res) })
+        }
+        fetch(`https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${trackList}&${settings}`, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token")
             }
@@ -45,7 +52,6 @@ const Recommendation = () => {
     useEffect(() => {
         return () => {
             playingSong.audio.pause()
-
         }
     }, [playingSong.audio])
 
@@ -104,7 +110,7 @@ const Recommendation = () => {
     }
 
     const handleAddToFavorite = async () => {
-        const trackList = selectedSongs.map(song => song.track.id)
+        const trackList = selectedSongs.tracks.map(song => song.track.id)
 
         try {
             await addToFavorite(trackList)
@@ -115,77 +121,79 @@ const Recommendation = () => {
         setStatus({
             createPlaylist: false, addToPlaylist: false, select: false
         })
-        setSelectedSongs([])
-
+        setSelectedSongs({ tracks: [], settings: {} })
     }
 
     return (
         <IsAuthenticated>
             <Background />
             <NavBar />
-            <div className='recommendation'>
-                <h1 className='title'>We <span>selected</span> for you these <span>songs!</span></h1>
+            {recommendation.length > 0 ?
+                <div className='recommendation'>
+                    <h1 className='title'>We <span>selected</span> for you these <span>songs!</span></h1>
 
-                <div className="actions">
+                    <div className="actions">
 
-                    {/* Main Actions */}
-                    <div className="actions__main">
-                        <button
-                            className={status.createPlaylist && !message.type ? "selected" : ""}
-                            name="createPlaylist"
-                            onClick={handleMainAction}
-                        >
-                            Add to playlist
-                        </button>
+                        {/* Main Actions */}
+                        <div className="actions__main">
+                            <button
+                                className={status.createPlaylist && !message.type ? "selected" : ""}
+                                name="createPlaylist"
+                                onClick={handleMainAction}
+                            >
+                                Add to playlist
+                            </button>
 
-                        <button
-                            className={status.select && !message.type ? "selected" : ""}
-                            name="select"
-                            onClick={handleMainAction}
-                        >
-                            Select
-                        </button>
-                    </div>
-
-                    {/* Create Playlist */}
-                    <div className={(status.createPlaylist && !message.type) ? "actions__createPlaylist active" : "actions__createPlaylist"}>
-                        <input type="text" placeholder="Playlist name" value={playlistName} onChange={e => {
-                            setStatus({ ...status, addToPlaylist: false })
-                            setPlaylistName(e.target.value)
-                        }} />
-
-                        <button
-                            disabled={!status.addToPlaylist}
-                            onClick={() => { handleCreatePlaylist(playlistName) }}
-                        >
-                            Create Playlist
-                        </button>
-                    </div>
-
-                    {/* Select */}
-                    <div className={(status.select && !message.type) ? "actions__select active" : "actions__select"}>
-                        <button
-                            className={selectedSongs.length > 0 ? "add active" : "add"}
-                            onClick={handleAddToFavorite}
-                        >
-                            Add {selectedSongs.length} songs to Favorite
-                        </button>
-                        <p style={selectedSongs.length > 0 ? { display: "none" } : { display: "block" }}>
-                            Select songs from the list below
-                        </p>
-                    </div>
-
-                    {statusMessage()}
-                </div>
-
-                <AudioPlayerContext.Provider value={{ playingSong, setPlayingSong }}>
-                    <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
-                        <div className={status.select ? "songs-container selecting" : "songs-container"}>
-                            {recommendation?.map((song, i) => <Song key={song.id} track={song} index={i} songLimit={false} />)}
+                            <button
+                                className={status.select && !message.type ? "selected" : ""}
+                                name="select"
+                                onClick={handleMainAction}
+                            >
+                                Select
+                            </button>
                         </div>
-                    </SelectedSongsContext.Provider>
-                </AudioPlayerContext.Provider>
-            </div >
+
+                        {/* Create Playlist */}
+                        <div className={(status.createPlaylist && !message.type) ? "actions__createPlaylist active" : "actions__createPlaylist"}>
+                            <input type="text" placeholder="Playlist name" value={playlistName} onChange={e => {
+                                setStatus({ ...status, addToPlaylist: false })
+                                setPlaylistName(e.target.value)
+                            }} />
+
+                            <button
+                                disabled={!status.addToPlaylist}
+                                onClick={() => { handleCreatePlaylist(playlistName) }}
+                            >
+                                Create Playlist
+                            </button>
+                        </div>
+
+                        {/* Select */}
+                        <div className={(status.select && !message.type) ? "actions__select active" : "actions__select"}>
+                            <button
+                                className={selectedSongs.tracks.length > 0 ? "add active" : "add"}
+                                onClick={handleAddToFavorite}
+                            >
+                                Add {selectedSongs.tracks.length} songs to Favorite
+                            </button>
+                            <p style={selectedSongs.tracks.length > 0 ? { display: "none" } : { display: "block" }}>
+                                Select songs from the list below
+                            </p>
+                        </div>
+
+                        {statusMessage()}
+                    </div>
+
+                    <AudioPlayerContext.Provider value={{ playingSong, setPlayingSong }}>
+                        <SelectedSongsContext.Provider value={{ selectedSongs, setSelectedSongs }}>
+                            <div className={status.select ? "songs-container selecting" : "songs-container"}>
+                                {recommendation?.map((song, i) => <Song key={song.id} track={song} index={i} songLimit={false} />)}
+                            </div>
+                        </SelectedSongsContext.Provider>
+                    </AudioPlayerContext.Provider>
+                </div > :
+                <h1 className='title_error'>Sorry, we couldn't find any song with theese filters.<br />Please try again.</h1>
+            }
         </IsAuthenticated>
     )
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import '../css/playlistSongs.css'
 import { SongInterface } from '../interfaces/playlist.interface'
 import Song from './Song'
+import { isExpired, refreshAccessToken } from '../utils/auth'
 
 interface PropsInterface {
     id: string,
@@ -19,7 +20,12 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
     const gradientColorArray = ["pink", "green", "blue"]
 
     useEffect(() => {
-        if (!id) return
+        setError("")
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                .then(res => { console.log(res) })
+        }
+
         fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=20`, {
             headers: {
                 Authorization: "Bearer " + accessToken
@@ -42,6 +48,10 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
 
     const loadMore = async () => {
         if (!songs?.next) return;
+
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+        }
 
         try {
             const res = await fetch(songs.next, {

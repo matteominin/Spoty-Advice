@@ -11,7 +11,7 @@
 
     .subtitle,
     span {
-        color: colors.$second;
+        color: colors.$blue;
     }
 
     .actions {
@@ -157,6 +157,14 @@
             }
         }
     }
+}
+
+.title_error {
+    color: #f2f2f2;
+    font-size: 32px;
+    text-align: center;
+    padding: 120px 20px 0 20px;
+    margin: 0 auto;
 }
 
 @media (min-width: 600px) {

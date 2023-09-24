@@ -8,7 +8,7 @@ import '../css/searchItem.css'
 const SearchItem = ({ track }: SongItemInterface) => {
     const { selectedSongs, setSelectedSongs } = useContext(SelectedSongsContext)
     const [deleteEffect, setDeleteEffect] = useState<boolean>(false)
-    const selected = selectedSongs.find((song) => song.track.id === track.id) ? true : false
+    const selected = selectedSongs.tracks.find((song) => song.track.id === track.id) ? true : false
 
     const getArtistsList = (artists: any) => {
         let artistsArray: Array<any> = []
@@ -19,11 +19,11 @@ const SearchItem = ({ track }: SongItemInterface) => {
     }
 
     const selectSong = (track: SongItemInterface) => {
-        if (selectedSongs.length >= 5 || selectedSongs.find(song => song.track.id === track.track.id)) return;  // TODO: add error message
-        setSelectedSongs([...selectedSongs, track])
+        if (selectedSongs.tracks.length >= 5 || selectedSongs.tracks.find(song => song.track.id === track.track.id)) return;  // TODO: add error message
+        setSelectedSongs({ ...selectedSongs, tracks: [...selectedSongs.tracks, track] })
     }
     const removeSong = (id: string) => {
-        setSelectedSongs(selectedSongs.filter(song => song.track.id !== id))
+        setSelectedSongs(selectedSongs.tracks.filter(song => song.track.id !== id))
         setDeleteEffect(false)
     }
 

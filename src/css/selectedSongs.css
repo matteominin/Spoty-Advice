@@ -2,7 +2,6 @@
   position: sticky;
   top: 150px;
   margin: 20px;
-  height: 585px;
   border-radius: 20px;
   padding: 30px 20px;
   display: flex;
@@ -89,9 +88,9 @@
   font-size: 14px;
 }
 .selectedSongs .submit {
-  display: block;
-  width: auto;
-  margin: 0 auto;
+  width: 95%;
+  padding: 12px 0;
+  margin: 0 10px;
 }
 .selectedSongs .submit.disabled {
   color: rgba(255, 255, 255, 0.247);
@@ -99,6 +98,21 @@
 }
 .selectedSongs .submit.disabled:hover {
   transform: none;
+}
+.selectedSongs .advancedSettings {
+  border-top: 1px solid rgba(255, 255, 255, 0.48);
+  margin-bottom: 20px;
+}
+.selectedSongs .advancedSettings h3 {
+  text-align: center;
+  margin: 30px auto 20px auto;
+}
+.selectedSongs .advancedSettings p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+.selectedSongs .advancedSettings__button {
+  margin-bottom: 40px;
 }
 
 .selectedSongs.mobile {

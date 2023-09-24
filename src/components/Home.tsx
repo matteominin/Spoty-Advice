@@ -2,7 +2,7 @@ import { useState } from "react"
 import NavBar from "./NavBar"
 import Playlists from "./Playlists"
 import SearchBar from "./SearchBar"
-import { SongItemInterface } from "../interfaces/playlist.interface"
+import { selectedSongsInterface } from "../interfaces/playlist.interface"
 import { SelectedSongsContext } from "../utils/context"
 import SelectedSongs from "./SelectedSongs"
 import '../css/home.css'
@@ -10,7 +10,7 @@ import Background from "./Background"
 import IsAuthenticated from "../auth/IsAuthenticated"
 
 const Home = () => {
-    const [selectedSongs, setSelectedSongs] = useState<Array<SongItemInterface>>([])
+    const [selectedSongs, setSelectedSongs] = useState<selectedSongsInterface>({ tracks: [], settings: {} })
 
     return (
         <IsAuthenticated>

@@ -3,6 +3,7 @@ import Playlist from "./Playlist"
 import PlaylistSongs from "./PlaylistSongs"
 import { PlaylistItemInterface } from "../interfaces/playlist.interface"
 import '../css/playlists.css'
+import { isExpired, refreshAccessToken } from "../utils/auth"
 
 const Playlists = () => {
     const [userData, setUserData] = useState<any>(null)
@@ -12,6 +13,12 @@ const Playlists = () => {
     const accessToken = localStorage.getItem('access_token')
 
     useEffect(() => {
+        setError(null)
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                .then(res => { console.log(res) })
+        }
+
         fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "6" }), {   // TODO: remove limit
             headers: {
                 Authorization: 'Bearer ' + accessToken
@@ -32,8 +39,13 @@ const Playlists = () => {
     }, [])
 
     const loadAll = async () => {
+        setError(null)
         let next: string = userData.next
         let allItems = [...userData.items]
+
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+        }
 
         while (next) {
             try {
@@ -57,6 +69,11 @@ const Playlists = () => {
     }
 
     const loadMore = async () => {
+        setError(null)
+        if (isExpired()) {
+            refreshAccessToken(localStorage.getItem('refresh_token') as string)
+        }
+
         try {
             const res = await fetch(userData.next, {
                 headers: {
