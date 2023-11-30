@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { SearchInterface } from "../interfaces/playlist.interface"
 import SearchItem from "./SearchItem"
 import searchIcon from '../assets/search.png'
 import '../css/searchBar.css'
-import { isExpired, refreshAccessToken } from "../utils/auth"
+import { refreshAccessToken } from "../utils/auth"
+import { refreshPageContext } from "../utils/context"
 
 const SearchBar = () => {
     const [query, setQuery] = useState<string>('')
     const [results, setResults] = useState<SearchInterface>()
     const [error, setError] = useState<string>('')
+    const { refresh, setRefresh } = useContext(refreshPageContext)
     const accessToken: string = localStorage.getItem('access_token') as string
 
     useEffect(() => {
@@ -29,16 +31,19 @@ const SearchBar = () => {
 
     const search = async () => {
         setError('')
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-        }
+
         try {
             const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             })
-            if (res.status === 401) throw new Error('Unauthorized')
+            if (res.status === 401) {
+                // Unauthorized
+                refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                setRefresh(!refresh)
+                return;
+            }
             if (!res.ok) throw new Error('Can\'t search data')
 
             const data = await res.json()

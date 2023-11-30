@@ -16,3 +16,12 @@ interface AudioPlayerContextInterface {
 export const AudioPlayerContext = createContext<AudioPlayerContextInterface>(
     { playingSong: { audio: new Audio(), preview_url: "" }, setPlayingSong: () => { } }
 )
+
+interface RefreshPageContextInterface {
+    refresh: boolean,
+    setRefresh: any
+}
+
+export const refreshPageContext = createContext<RefreshPageContextInterface>({ refresh: false, setRefresh: () => { } })
+
+export const loadingContext = createContext<{ isLoading: boolean, setIsLoading: any }>({ isLoading: false, setIsLoading: () => { } })

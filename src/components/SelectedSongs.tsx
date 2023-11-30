@@ -8,7 +8,9 @@ import { moods } from "../utils/moods"
 
 const SelectedSongs = ({ className }: { className: string }) => {
     const { selectedSongs, setSelectedSongs } = useContext(SelectedSongsContext)
+    const [selectedMood, setSelectedMood] = useState<string>("")
     const [advancedSettings, setAdvancedSettings] = useState(false)
+    const [showMoreFilteres, setShowMoreFilteres] = useState(false)
 
     const getArtistsList = (artists: any) => {
         let artistsArray: Array<any> = []
@@ -27,7 +29,8 @@ const SelectedSongs = ({ className }: { className: string }) => {
         setSelectedSongs({ ...selectedSongs, settings: { ...selectedSongs.settings, [e.target.name]: e.target.value } })
     }
     const handleMood = (moodIndex: number) => {
-        setSelectedSongs({ ...selectedSongs, settings: { ...selectedSongs.settings, ...moods[moodIndex].parameters } })
+        setSelectedMood(moods[moodIndex].name)
+        setSelectedSongs({ ...selectedSongs, settings: { ...moods[moodIndex].parameters } })
     }
 
     function objectToQueryString(obj: any) {
@@ -84,35 +87,87 @@ const SelectedSongs = ({ className }: { className: string }) => {
             </ul>
             {selectedSongs.tracks.length >= 5 && <p className="error">You can select only up to 5 songs</p>}
 
-            {advancedSettings &&
-                <div className="advancedSettings">
-                    <h3>Advanced Settings</h3>
-                    <div className="advancedSettings__moods">
-                        {moods.map((mood, i) => <button key={mood.name} className="transparent" onClick={() => handleMood(i)}>{mood.name}</button>)}
-                    </div>
+            <div className={advancedSettings ? "advancedSettings active" : "advancedSettings"}>
+                <h3>Advanced Settings</h3>
+                <div className="advancedSettings__moods">
+                    {moods.map((mood, i) =>
+                        <button
+                            key={mood.name}
+                            className={selectedMood === mood.name ? "transparent selected" : "transparent"}
+                            onClick={() => handleMood(i)}
+                        >
+                            {mood.name}
+                        </button>
+                    )}
+                </div>
+
+                <button className="showMore" onClick={() => setShowMoreFilteres(!showMoreFilteres)}>
+                    {showMoreFilteres ? <><span>-</span> Hide Filters</> : <><span>+</span> More Filters</>}
+                </button>
+
+                <div className={showMoreFilteres ? "advancedSettings__knobs active" : "advancedSettings__knobs"}>
                     <label>
                         <p>Popularity</p>
-                        <input type="range" name="target_popularity" min={0} max={100} step={1} onChange={handleSettings} />
+                        <input
+                            type="range"
+                            name="target_popularity"
+                            value={selectedSongs.settings?.target_popularity || 50}
+                            min={0}
+                            max={100}
+                            step={1}
+                            onChange={handleSettings}
+                        />
                     </label>
 
                     <label>
                         <p>Danceability</p>
-                        <input type="range" name="target_danceability" min={0} max={1} step={0.1} onChange={handleSettings} />
+                        <input
+                            type="range"
+                            name="target_danceability"
+                            value={selectedSongs.settings?.target_danceability || 0.5}
+                            min={0}
+                            max={1}
+                            step={0.1}
+                            onChange={handleSettings}
+                        />
                     </label>
 
                     <label>
                         <p>Energy</p>
-                        <input type="range" name="target_energy" min={0} max={1} step={0.1} onChange={handleSettings} />
+                        <input
+                            type="range"
+                            name="target_energy"
+                            value={selectedSongs.settings?.target_energy || 0.5}
+                            min={0}
+                            max={1}
+                            step={0.1}
+                            onChange={handleSettings}
+                        />
                     </label>
                 </div>
-            }
+            </div>
 
-            <button
-                className="transparent advancedSettings__button"
-                onClick={() => setAdvancedSettings(!advancedSettings)}
-            >
-                {advancedSettings ? "Close" : "Advanced Settings"}
-            </button>
+
+            {advancedSettings ?
+                <button
+                    className="close__settings"
+                    onClick={() => {
+                        setSelectedSongs({ tracks: [...selectedSongs.tracks], settings: {} })
+                        setSelectedMood("")
+                        setShowMoreFilteres(false)
+                        setAdvancedSettings(false)
+                    }}
+                >
+                    Close Settings
+                </button>
+                :
+                <button
+                    className="advancedSettings__button"
+                    onClick={() => setAdvancedSettings(true)}
+                >
+                    Advanced Settings
+                </button>
+            }
 
 
             <Link

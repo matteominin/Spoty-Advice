@@ -103,24 +103,11 @@
         font-size: 14px;
     }
 
-    .submit {
-        width: 95%;
-        padding: 12px 0;
-        margin: 0 10px;
-    }
-
-    .submit.disabled {
-        color: rgba(255, 255, 255, 0.247);
-        background-color: colors.$blue;
-    }
-
-    .submit.disabled:hover {
-        transform: none;
-    }
-
     .advancedSettings {
         border-top: 1px solid rgba(255, 255, 255, 0.48);
-        margin-bottom: 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
 
         h3 {
             text-align: center;
@@ -131,10 +118,98 @@
             margin: 0;
             color: colors.$lightWhite;
         }
+
+        .showMore {
+            background-color: transparent;
+            color: colors.$lightWhite;
+            font-weight: 300;
+            margin-left: 0;
+            padding-left: 10px;
+            margin-bottom: 10px;
+
+
+            span {
+                position: relative;
+                font-size: 20px;
+                font-weight: 400;
+                top: 1px;
+                margin-right: 5px;
+                color: rgba(255, 255, 255, 0.337);
+            }
+        }
+
+        &__moods {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            button {
+                padding: 7px 20px;
+                margin-bottom: 15px;
+                color: colors.$lightWhite;
+            }
+
+            button:hover {
+                color: white;
+            }
+
+            button.selected {
+                border: 2px solid white;
+                color: white;
+            }
+        }
+
+        &__knobs {
+            pointer-events: none;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.7s ease-in-out;
+        }
+
+        &__knobs.active {
+            opacity: 1;
+            pointer-events: all;
+            max-height: 1000px;
+        }
     }
 
+    .advancedSettings.active {
+        max-height: 5000px;
+    }
+
+
+    .close__settings,
     .advancedSettings__button {
-        margin-bottom: 40px;
+        border: none;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.785);
+        text-decoration: underline;
+        font-weight: 300;
+        text-underline-offset: 2.5px;
+        padding: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .close__settings:hover,
+    .advancedSettings__button:hover {
+        color: white;
+    }
+
+    .submit {
+        width: 95%;
+        padding: 12px 0;
+        margin: 40px 10px 0 10px;
+        align-items: center;
+    }
+
+    .submit.disabled {
+        color: rgba(255, 255, 255, 0.247);
+        background-color: colors.$blue;
+    }
+
+    .submit.disabled:hover {
+        transform: none;
     }
 }
 

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import '../css/playlistSongs.css'
 import { SongInterface } from '../interfaces/playlist.interface'
 import Song from './Song'
-import { isExpired, refreshAccessToken } from '../utils/auth'
+import { refreshAccessToken } from '../utils/auth'
+import { refreshPageContext } from '../utils/context'
 
 interface PropsInterface {
     id: string,
@@ -16,15 +17,12 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
     const [songs, setSongs] = useState<SongInterface>()
     const [gradientColor, setGradientColor] = useState<string>()
     const [error, setError] = useState<string>("")
+    const { refresh, setRefresh } = useContext(refreshPageContext)
     const accessToken: string = localStorage.getItem("access_token") || ""
     const gradientColorArray = ["pink", "green", "blue"]
 
     useEffect(() => {
         setError("")
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-                .then(res => { console.log(res) })
-        }
 
         fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?limit=20`, {
             headers: {
@@ -32,7 +30,12 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
             }
         })
             .then(res => {
-                if (res.status === 401) throw new Error("Unauthorized")
+                if (res.status === 401) {
+                    // Unauthorized
+                    refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                    setRefresh(!refresh)
+                    return;
+                }
                 if (!res.ok) throw new Error("Error, can't load this playlist")
 
                 return res.json()
@@ -44,21 +47,23 @@ const PlaylistSongs = ({ id, name, images, owner, tracks }: PropsInterface) => {
                 setError(e.message || "Unexpected error")
             });
         setGradientColor(gradientColorArray[Math.floor(Math.random() * gradientColorArray.length)])
-    }, [id])
+    }, [id, refresh])
 
     const loadMore = async () => {
+
         if (!songs?.next) return;
-
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-        }
-
         try {
             const res = await fetch(songs.next, {
                 headers: {
                     Authorization: "Bearer " + accessToken
                 }
             })
+            if (res.status === 401) {
+                // Unauthorized
+                refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                setRefresh(!refresh)
+                return;
+            }
             if (!res.ok) {
                 throw new Error("Error, can't load more")
             }

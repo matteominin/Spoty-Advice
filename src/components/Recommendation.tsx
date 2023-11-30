@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import '../css/recommendation.css'
 import { SearchItemInterface, selectedSongsInterface } from '../interfaces/playlist.interface'
 import Background from './Background'
 import Song from './Song'
 import NavBar from './NavBar'
-import { AudioPlayerContext, SelectedSongsContext } from '../utils/context'
+import { AudioPlayerContext, SelectedSongsContext, refreshPageContext } from '../utils/context'
 import { addTracksToPlaylist, createPlaylist, isPlaylistNameDuplicate, addToFavorite } from '../interfaces/recommendation'
 import IsAuthenticated from '../auth/IsAuthenticated'
-import { isExpired, refreshAccessToken } from '../utils/auth'
+import { refreshAccessToken } from '../utils/auth'
 
 const Recommendation = () => {
     const [recommendation, setRecommendation] = useState<Array<SearchItemInterface>>([])
@@ -15,6 +15,7 @@ const Recommendation = () => {
     const [playlistName, setPlaylistName] = useState<string>("")
     const [message, setMessage] = useState<{ type: string, message: string }>({ type: "", message: "" })
     const [selectedSongs, setSelectedSongs] = useState<selectedSongsInterface>({ tracks: [], settings: {} })
+    const { refresh, setRefresh } = useContext(refreshPageContext)
 
     const [status, setStatus] = useState<any>({
         createPlaylist: false,
@@ -24,20 +25,20 @@ const Recommendation = () => {
 
     const trackList = new URLSearchParams(window.location.search).get('trackList')
     const settings = new URLSearchParams(window.location.search).get('settings')
-    console.log(settings)
 
     useEffect(() => {
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-                .then(res => { console.log(res) })
-        }
         fetch(`https://api.spotify.com/v1/recommendations?limit=10&seed_tracks=${trackList}&${settings}`, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token")
             }
         })
             .then(res => {
-                if (res.status === 401) throw new Error("Unauthorized")
+                if (res.status === 401) {
+                    // Unauthorized
+                    refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                    setRefresh(!refresh)
+                    return;
+                }
                 if (!res.ok) throw new Error("Error in fetching data")
                 return res.json()
             })
@@ -47,7 +48,7 @@ const Recommendation = () => {
             .catch(err => {
                 setMessage({ type: "error", message: err.message })
             })
-    }, [])
+    }, [refresh])
 
     useEffect(() => {
         return () => {
@@ -130,7 +131,7 @@ const Recommendation = () => {
             <NavBar />
             {recommendation.length > 0 ?
                 <div className='recommendation'>
-                    <h1 className='title'>We <span>selected</span> for you these <span>songs!</span></h1>
+                    <h1 className='title'>We selected for you these songs!</h1>
 
                     <div className="actions">
 

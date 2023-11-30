@@ -48,10 +48,8 @@ export const refreshAccessToken = async (refreshToken: string) => {
         await localStorage.setItem('access_token', data.access_token);
         await localStorage.setItem('expires_in', String(new Date().getTime() + data.expires_in * 1000));
         await localStorage.setItem('refresh_token', data.refresh_token);
-        return true;
     } catch (error) {
         localStorage.clear()
-        return false;
     }
 }
 

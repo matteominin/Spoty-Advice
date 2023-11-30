@@ -97,7 +97,7 @@ input {
     border: none;
     border-radius: 20px;
     text-indent: 20px;
-    width: 100%;
+    width: 99%;
 }
 
 input:focus {
@@ -110,7 +110,6 @@ input[type="range"] {
     appearance: none;
     background: transparent;
     cursor: pointer;
-    width: 25rem;
 }
 
 /* Removes default focus */

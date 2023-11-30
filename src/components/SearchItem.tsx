@@ -23,7 +23,7 @@ const SearchItem = ({ track }: SongItemInterface) => {
         setSelectedSongs({ ...selectedSongs, tracks: [...selectedSongs.tracks, track] })
     }
     const removeSong = (id: string) => {
-        setSelectedSongs(selectedSongs.tracks.filter(song => song.track.id !== id))
+        setSelectedSongs({ ...selectedSongs, tracks: selectedSongs.tracks.filter(song => song.track.id !== id) })
         setDeleteEffect(false)
     }
 

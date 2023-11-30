@@ -1,23 +1,21 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Playlist from "./Playlist"
 import PlaylistSongs from "./PlaylistSongs"
 import { PlaylistItemInterface } from "../interfaces/playlist.interface"
 import '../css/playlists.css'
-import { isExpired, refreshAccessToken } from "../utils/auth"
+import { refreshAccessToken } from "../utils/auth"
+import { refreshPageContext } from "../utils/context"
 
 const Playlists = () => {
     const [userData, setUserData] = useState<any>(null)
     const [selectedPlaylist, setSelectedPlaylist] = useState<PlaylistItemInterface>()
     const [error, setError] = useState<string | null>(null)
+    const { refresh, setRefresh } = useContext(refreshPageContext)
 
     const accessToken = localStorage.getItem('access_token')
 
     useEffect(() => {
         setError(null)
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-                .then(res => { console.log(res) })
-        }
 
         fetch('https://api.spotify.com/v1/me/playlists?' + new URLSearchParams({ limit: "6" }), {   // TODO: remove limit
             headers: {
@@ -25,7 +23,12 @@ const Playlists = () => {
             }
         })
             .then(res => {
-                if (res.status === 401) throw new Error('Unauthorized')
+                if (res.status === 401) {
+                    // Unauthorized
+                    refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                    setRefresh(!refresh)
+                    return;
+                }
                 if (!res.ok) throw new Error('HTTP status ' + res.status)
 
                 return res.json();
@@ -36,16 +39,12 @@ const Playlists = () => {
             .catch(e => {
                 setError(e.message || 'Unexpected error')
             })
-    }, [])
+    }, [refresh])
 
     const loadAll = async () => {
         setError(null)
         let next: string = userData.next
         let allItems = [...userData.items]
-
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-        }
 
         while (next) {
             try {
@@ -55,7 +54,13 @@ const Playlists = () => {
                     }
                 })
 
-                if (res.status === 401) throw new Error('Unauthorized')
+                if (res.status === 401) {
+                    // Unauthorized
+                    refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                    setRefresh(!refresh)
+                    return;
+                }
+
                 if (!res.ok) throw new Error('Error, can\'t load more')
 
                 const data = await res.json()
@@ -70,10 +75,6 @@ const Playlists = () => {
 
     const loadMore = async () => {
         setError(null)
-        if (isExpired()) {
-            refreshAccessToken(localStorage.getItem('refresh_token') as string)
-        }
-
         try {
             const res = await fetch(userData.next, {
                 headers: {
@@ -82,7 +83,10 @@ const Playlists = () => {
             })
 
             if (res.status === 401) {
-                throw new Error('Unauthorized')
+                // Unauthorized
+                refreshAccessToken(localStorage.getItem('refresh_token') as string)
+                setRefresh(!refresh)
+                return;
             }
 
             if (!res.ok) {
